@@ -1,0 +1,17 @@
+<div class="code-name">
+  <div class="header">
+    <input type="button" value="Reset" (click)="reset()">
+  </div>
+  <div class="content-box">
+    <div class="block" [ngClass]="getClass(block)" *ngFor="let block of codeBlocks;" (click)="block.currentColor = block.color">
+      {{ block.word }}
+    </div>
+  </div>
+  <div class="toggle">
+    SpyMaster View:
+    <label class="switch">
+      <input type="checkbox" checked (change)="toggleGameView()">
+      <span class="slider round"></span>
+    </label>
+  </div>
+</div>
