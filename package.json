@@ -12,6 +12,7 @@
     "@angular/platform-browser-dynamic": "5.2.8",
     "@angular/router": "5.2.8",
     "core-js": "2.5.1",
+    "ionic-audio": "^3.2.2",
     "lodash": "^4.17.5",
     "rxjs": "5.5.6",
     "zone.js": "0.8.20"
@@ -20,7 +21,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

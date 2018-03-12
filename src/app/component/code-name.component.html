@@ -1,16 +1,30 @@
 <div class="code-name">
   <div class="header">
-    <input type="button" value="Reset" (click)="reset()">
+    <span class="label"> Game Id:</span>
+    <input type="number" [(ngModel)]="gameId" />
+    <input type="button" class="btn blue" value="Retrieve" (click)="getSavedCodeBlock(gameId)">
+    <span class="warning" *ngIf="disableSpyMode">
+      Some one is already viewing spy master
+    </span>
+    <span class="RED">{{ maxColorLeft }}</span>
+    <span class="BLUE">{{ minColorLeft }}</span>
+    <span class="result GREEN" *ngIf="gameResultColor && gameResultColor !== CodeBlockColor.BLACK">
+      Congrats {{ gameResultColor }} team !!!
+    </span>
+    <span class="result RED" *ngIf="gameResultColor && gameResultColor === CodeBlockColor.BLACK">
+      Game Over !!!
+    </span>
+    <input class="btn reset" type="button" value="Reset" (click)="reset()">
   </div>
   <div class="content-box">
-    <div class="block" [ngClass]="getClass(block)" *ngFor="let block of codeBlocks;" (click)="block.currentColor = block.color">
-      {{ block.word }}
+    <div class="block" [ngClass]="getClass(block)" *ngFor="let block of codeBlocks;" (click)="onBlockClick(block)">
+      <span *ngIf="!loading">{{ block.word }}</span>
     </div>
   </div>
   <div class="toggle">
-    SpyMaster View:
+    <span class="label">SpyMaster View:</span>
     <label class="switch">
-      <input type="checkbox" [checked]="isSpyMasterViewOn()" (change)="toggleGameView()">
+      <input type="checkbox" [checked]="isSpyMasterViewOn()" (change)="toggleGameView()" (disabled)="!disableSpyMode">
       <span class="slider round"></span>
     </label>
   </div>

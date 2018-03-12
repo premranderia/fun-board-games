@@ -5,11 +5,13 @@ export class CodeBlock {
   public color: CodeBlockColor;
   public currentColor: CodeBlockColor;
   public id: number;
+  public clicked: boolean;
 
-  constructor({ word, color, id }) {
+  constructor({ word, color, id, clicked = false }) {
     this.id = id;
     this.word = word;
     this.color = color;
     this.currentColor = CodeBlockColor.NONE;
+    this.clicked = clicked;
   }
 }
