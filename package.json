@@ -1,5 +1,5 @@
 {
-  "name": "Code Name = Fun Party Game"
+  "name": "code-name-front-end",
   "description": "",
   "dependencies": {
     "@angular/animations": "^5.0.0",
