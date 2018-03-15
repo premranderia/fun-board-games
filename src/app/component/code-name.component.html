@@ -3,9 +3,9 @@
     <span class="label"> Game Id:</span>
     <input type="number" [(ngModel)]="gameId" />
     <input type="button" class="btn blue" value="Retrieve" (click)="getSavedCodeBlock(gameId)">
-    <span class="warning" *ngIf="disableSpyMode">
+    <!-- <span class="warning" *ngIf="disableSpyMode">
       Some one is already viewing spy master
-    </span>
+    </span> -->
     <span class="RED">{{ maxColorLeft }}</span>
     <span class="BLUE">{{ minColorLeft }}</span>
     <span class="result GREEN" *ngIf="gameResultColor && gameResultColor !== CodeBlockColor.BLACK">
@@ -14,7 +14,7 @@
     <span class="result RED" *ngIf="gameResultColor && gameResultColor === CodeBlockColor.BLACK">
       Game Over !!!
     </span>
-    <input class="btn reset" type="button" value="Reset" (click)="reset()">
+    <input class="btn reset" type="button" value="Reset" (click)="resetGame()">
   </div>
   <div class="content-box">
     <div class="block" [ngClass]="getClass(block)" *ngFor="let block of codeBlocks;" (click)="onBlockClick(block)">
@@ -24,7 +24,7 @@
   <div class="toggle">
     <span class="label">SpyMaster View:</span>
     <label class="switch">
-      <input type="checkbox" [checked]="isSpyMasterViewOn()" (change)="toggleGameView()" (disabled)="!disableSpyMode">
+      <input type="checkbox" [checked]="isSpyMasterViewOn()" (change)="toggleGameView()">
       <span class="slider round"></span>
     </label>
   </div>

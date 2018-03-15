@@ -47,7 +47,12 @@ export class CodeNameComponent implements OnInit {
   async ngOnInit() {
     this.loading = true;
     let gameId = undefined;
+
+    // await vm.grid.ready;
+
+    // vm.grid.ready.subscribe();
     this.route.queryParams
+    // .toPromise();
       .subscribe((params: Params) => {
         if (params['spy'] && !!params['spy'] === true) {
           this.gameView = GameView.SPYMASTER;
@@ -55,7 +60,7 @@ export class CodeNameComponent implements OnInit {
         if (params['id']) {
           this.getSavedCodeBlock(params['id']);
         }
-        this.reset();
+        this.resetGame();
       });
 
     // const audio = new Audio();
@@ -70,9 +75,9 @@ export class CodeNameComponent implements OnInit {
     }).subscribe((data) => {
       this.disableSpyMode = data['spyViewCount'] > 1;
       // Turn of viewing the game if the spy mode is already on
-      if (this.disableSpyMode) {
-        this.gameView = GameView.PLAYER;
-      }
+      // if (this.disableSpyMode) {
+      //   this.gameView = GameView.PLAYER;
+      // }
       if (!_.isEmpty(data['blocks'])) {
         this.codeBlocks = _.map(data['blocks'], (elem) => {
           return new CodeBlock(elem);
@@ -82,7 +87,7 @@ export class CodeNameComponent implements OnInit {
     });
   }
 
-  public reset() {
+  public resetGame() {
     this.gameResultColor = undefined;
     this.maxColorLeft = this.maxColor;
     this.minColorLeft = this.minColor;
