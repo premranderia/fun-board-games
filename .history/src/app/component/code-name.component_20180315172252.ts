@@ -139,7 +139,7 @@ export class CodeNameComponent implements OnInit {
   }
 
   public onBlockClick(block: CodeBlock) {
-    if (this.gameResultColor !== undefined || this.isSpyMasterViewOn()) {
+    if (this.gameResultColor !== undefined) {
       return;
     }
     block.clicked = true;

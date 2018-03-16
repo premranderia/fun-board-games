@@ -1,5 +1,5 @@
 .code-name {
-  font-family: sans-serif;
+  font-family: Lato;
   font-size: 22px;
   user-select: none;
 }
@@ -86,8 +86,6 @@ input {
   left: 47%;
   position: absolute;
 }
-.block.clicked {
+&.clicked {
   text-decoration: line-through;
-  opacity: 0.6;
-  text-decoration-style: dotted;
 }

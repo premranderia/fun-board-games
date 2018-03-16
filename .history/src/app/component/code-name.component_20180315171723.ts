@@ -121,9 +121,9 @@ export class CodeNameComponent implements OnInit {
   public getClass(block: CodeBlock) {
     let css = undefined;
     css = (this.gameView === GameView.SPYMASTER && !this.loading) || block.clicked ? block.color : block.currentColor;
-    if (block.clicked === true && this.isSpyMasterViewOn()) {
-      css = `${css} clicked`;
-    }
+    // if (block.clicked !== Grid) {
+    //   css = `${css} clicked`;
+    // }
     return css;
   }
 
@@ -139,7 +139,7 @@ export class CodeNameComponent implements OnInit {
   }
 
   public onBlockClick(block: CodeBlock) {
-    if (this.gameResultColor !== undefined || this.isSpyMasterViewOn()) {
+    if (this.gameResultColor !== undefined) {
       return;
     }
     block.clicked = true;
