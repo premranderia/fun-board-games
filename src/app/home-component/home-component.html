@@ -8,11 +8,11 @@
       <div class="right">
         <div class="child">
 
-          <input type="Button" class="btn new-game" (click)="navigate()" value="Start a New Game" />
+          <input type="Button" class="btn new-game" (click)="navigate({})" value="Start a New Game" />
         </div>
         <div class="child">
           <input type="number" placeholder="0" min="0" class="btn input-game" [(ngModel)]="gameId">
-          <input type="Button" class="btn existing-game" (click)="enterGameWithId()" value="Retrieve Game"/>
+          <input type="Button" class="btn existing-game" (click)="enterGameWithId()" value="Retrieve Game" />
         </div>
 
       </div>
