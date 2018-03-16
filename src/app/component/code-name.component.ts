@@ -9,7 +9,7 @@ import { DATA } from '../../assets/game-sample';
 import { CodeBlockService } from './internal/code-block.service';
 import 'rxjs/add/operator/map';
 import { NgIf } from '@angular/common';
-
+// import { MatSlideToggleModule } from '@angular/material';
 @Component({
   selector: 'code-name',
   templateUrl: `./code-name.component.html`,
@@ -52,8 +52,9 @@ export class CodeNameComponent implements OnInit {
 
     // vm.grid.ready.subscribe();
     this.route.queryParams
-    // .toPromise();
+      // .toPromise();
       .subscribe((params: Params) => {
+        console.log({ params });
         if (params['spy'] && !!params['spy'] === true) {
           this.gameView = GameView.SPYMASTER;
         }

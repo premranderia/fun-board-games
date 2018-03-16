@@ -1,0 +1,80 @@
+.home-component {
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  -webkit-box-flex-direction: row;
+  -moz-box-flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  height:100%;
+}
+.content {
+  margin: auto;
+  /* width: 500px; */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  padding: 20px 50px;
+}
+.title {
+  font-size: 30px;
+  text-align: center;
+  color: #4d4d4d;
+  margin: 20px;
+}
+.rules {
+  font-size: 24px;
+}
+.row {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.btn {
+  border: 1px solid;
+  border-radius: 2px;
+  font-family: Arial;
+  height: 30px;
+  padding: 0 15px;
+  font-size: 12px;
+  font-weight: 700;    
+  border: 0;
+  color: #fff;
+  height: 50px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.left, .right {
+  display: flex;
+  margin-right: 30px;
+}
+
+.child {
+  display: flex;
+  flex-direction: column;
+  width: 150;
+  height: 200px;
+  align-items: center;
+}
+.right {
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.input-game {
+  border: 1px dotted #222;
+  width: 40px;
+  margin-bottom: 10px;
+  color: #4d4d4d;
+}
+.existing-game {
+  background: #dc3545;
+}
+.new-game {
+  background: #28a745;
+  float: right;
+}
+.logo {
+  width: 500px;
+  height: 800px;
+}

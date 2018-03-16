@@ -1,31 +1,24 @@
 <div class="code-name">
   <div class="header">
-    <span class="label"> Game Id:</span>
-    <input type="number" [(ngModel)]="gameId" />
-    <input type="button" class="btn blue" value="Retrieve" (click)="getSavedCodeBlock(gameId)">
-    <!-- <span class="warning" *ngIf="disableSpyMode">
-      Some one is already viewing spy master
-    </span> -->
-    <span class="RED">{{ maxColorLeft }}</span>
-    <span class="BLUE">{{ minColorLeft }}</span>
+    <span class="label"> Game ID</span>
+    <input type="number" class="game-number" [(ngModel)]="gameId" [disabled]="true" />
+    <!-- <input type="button" class="btn blue" value="Retrieve" (click)="getSavedCodeBlock(gameId)"> -->
+    <span class="RED card-left">{{ maxColorLeft }}</span>
+    <span class="BLUE card-left">{{ minColorLeft }}</span>
     <span class="result GREEN" *ngIf="gameResultColor && gameResultColor !== CodeBlockColor.BLACK">
       Congrats {{ gameResultColor }} team !!!
     </span>
     <span class="result RED" *ngIf="gameResultColor && gameResultColor === CodeBlockColor.BLACK">
       Game Over !!!
     </span>
-    <input class="btn reset" type="button" value="Reset" (click)="resetGame()">
+    <button mat-raised-button (click)="resetGame()" color="warn" class="reset">Reset</button>
+    <mat-slide-toggle class="slide-toggle" [checked]="isSpyMasterViewOn()" (change)="toggleGameView()">
+      Spy View
+    </mat-slide-toggle>
   </div>
   <div class="content-box">
     <div class="block" [ngClass]="getClass(block)" *ngFor="let block of codeBlocks;" (click)="onBlockClick(block)">
       <span *ngIf="!loading">{{ block.word }}</span>
     </div>
-  </div>
-  <div class="toggle">
-    <span class="label">SpyMaster View:</span>
-    <label class="switch">
-      <input type="checkbox" [checked]="isSpyMasterViewOn()" (change)="toggleGameView()">
-      <span class="slider round"></span>
-    </label>
   </div>
 </div>

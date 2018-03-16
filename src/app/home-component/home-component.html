@@ -1,0 +1,26 @@
+<div class="home-component">
+  <div class="content">
+    <div class="row">
+      <div class="left">
+        <img src="../../assets/code-name.jpg" class="logo">
+
+      </div>
+      <div class="right">
+        <div class="child">
+
+          <input type="Button" class="btn new-game" (click)="navigate()" value="Start a New Game" />
+        </div>
+        <div class="child">
+          <input type="number" placeholder="0" min="0" class="btn input-game" [(ngModel)]="gameId">
+          <input type="Button" class="btn existing-game" (click)="enterGameWithId()" value="Retrieve Game"/>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+    </div>
+
+  </div>
+
+</div>
