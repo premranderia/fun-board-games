@@ -5,7 +5,7 @@ import { ActivatedRoute, Params, UrlSegment } from '@angular/router';
 import { CodeBlockColor, GameView } from './code-block.constant';
 import { NgForOf } from '@angular/common';
 import * as _ from 'lodash';
-import { DATA } from '../../assets/game-sample';
+import { DATA } from '../../assets/game-sample-2';
 import { CodeBlockService } from './internal/code-block.service';
 import 'rxjs/add/operator/map';
 import { NgIf } from '@angular/common';
