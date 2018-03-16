@@ -7,12 +7,14 @@
       </div>
       <div class="right">
         <div class="child">
-
-          <input type="Button" class="btn new-game" (click)="navigate({})" value="Start a New Game" />
+          <input type="Button" class="btn new-game" (click)="navigate({})" value="New Game" />
         </div>
         <div class="child">
           <input type="number" placeholder="0" min="0" class="btn input-game" [(ngModel)]="gameId">
-          <input type="Button" class="btn existing-game" (click)="enterGameWithId()" value="Retrieve Game" />
+          <mat-slide-toggle class="slide-toggle" [checked]="spyMode" color="warn" (change)="spyMode = !spyMode">
+            <label class="label">Spy View</label>
+          </mat-slide-toggle>
+          <button mat-raised-button (click)="enterGameWithId()" color="warn" class="btn existing-game">Retrieve Game</button>
         </div>
 
       </div>

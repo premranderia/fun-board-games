@@ -51,10 +51,12 @@
 
 .child {
   display: flex;
-  flex-direction: column;
-  width: 150;
+  flex-direction: row;
+  width: 230px;
   height: 200px;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .right {
   flex-direction: column;
@@ -62,10 +64,12 @@
   justify-content: center;
 }
 .input-game {
-  border: 1px dotted #222;
-  width: 40px;
+  border: 1px dotted #ef9a9a;
+  width: 80px;
   margin-bottom: 10px;
   color: #4d4d4d;
+  margin-right: 10px;
+  color: #ef9a9a;
 }
 .existing-game {
   background: #dc3545;
@@ -77,4 +81,8 @@
 .logo {
   width: 500px;
   height: 800px;
+}
+.label {
+  color: #ef9a9a;
+  font-weight: bold;
 }

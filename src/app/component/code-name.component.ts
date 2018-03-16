@@ -54,7 +54,6 @@ export class CodeNameComponent implements OnInit {
     this.route.queryParams
       // .toPromise();
       .subscribe((params: Params) => {
-        console.log({ params });
         if (params['spy'] && !!params['spy'] === true) {
           this.gameView = GameView.SPYMASTER;
         }
@@ -63,11 +62,6 @@ export class CodeNameComponent implements OnInit {
         }
         this.resetGame();
       });
-
-    // const audio = new Audio();
-    // audio.src = '../../kbc.mp3';
-    // audio.load();
-    // audio.play();
   }
 
   public getSavedCodeBlock(id) {

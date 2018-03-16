@@ -15,14 +15,20 @@ import { NgIf } from '@angular/common';
 
 export class HomeComponent implements OnInit {
   public gameId: number;
+  public spyMode: boolean;
+
   constructor(private router: Router) { }
   ngOnInit() {
     this.gameId = 0;
+    this.spyMode = true;
   }
   public enterGameWithId() {
     let queryParams = {};
     if (this.gameId > 0) {
       queryParams['id'] = this.gameId;
+    }
+    if (this.spyMode) {
+      queryParams['spy'] = this.spyMode;
     }
     this.navigate(queryParams);
   }
