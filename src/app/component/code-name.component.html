@@ -18,7 +18,7 @@
   </div>
   <div class="content-box">
     <div class="block" [ngClass]="getClass(block)" *ngFor="let block of codeBlocks;" (click)="onBlockClick(block)">
-      <span *ngIf="!loading">{{ block.word }}</span>
+      <div class="block-content" *ngIf="!loading">{{ block.word }}</div>
     </div>
   </div>
 </div>
