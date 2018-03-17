@@ -8,12 +8,14 @@
   -webkit-flex-direction: row;
   flex-direction: row;
   height:100%;
+  background: whitesmoke;
 }
 .content {
   margin: auto;
   /* width: 500px; */
   box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
   padding: 20px 50px;
+  background: rebeccapurple;
 }
 .title {
   font-size: 30px;
