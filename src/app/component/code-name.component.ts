@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { CodeBlock } from './code-block.factory';
-import { ActivatedRoute, Params, UrlSegment } from '@angular/router';
+import { ActivatedRoute, Params, UrlSegment, Router } from '@angular/router';
 import { CodeBlockColor, GameView } from './code-block.constant';
 import { NgForOf } from '@angular/common';
 import * as _ from 'lodash';
@@ -37,7 +37,8 @@ export class CodeNameComponent implements OnInit {
   private noOfColumns = 5;
   private totalBlocks = this.noOfColumns * this.noOfRows;
 
-  constructor(private route: ActivatedRoute, private codeBlockService: CodeBlockService) {
+  constructor(private route: ActivatedRoute, private codeBlockService: CodeBlockService,
+    private router: Router) {
     this.codeBlocks = [];
     this.colors = [];
     this.words = [];
@@ -149,6 +150,10 @@ export class CodeNameComponent implements OnInit {
       return;
     }
     this.updateScore();
+  }
+
+  public navigateToHome() {
+    this.router.navigate(['']);
   }
 
   private updateScore() {

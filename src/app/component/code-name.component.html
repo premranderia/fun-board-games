@@ -1,7 +1,10 @@
 <div class="code-name">
   <div class="header">
-    <span class="label"> Game ID</span>
-    <input type="number" class="game-number" [(ngModel)]="gameId" [disabled]="true" />
+    <span class="label" (click)="navigateToHome()"> Code Names </span>
+    <button mat-mini-fab color="accent" class="id-text">
+      <span>{{ gameId }}</span>
+    </button>
+    <!-- <input type="number" class="game-number" [(ngModel)]="gameId" [disabled]="true" /> -->
     <!-- <input type="button" class="btn blue" value="Retrieve" (click)="getSavedCodeBlock(gameId)"> -->
     <span class="RED card-left">{{ maxColorLeft }}</span>
     <span class="BLUE card-left">{{ minColorLeft }}</span>
