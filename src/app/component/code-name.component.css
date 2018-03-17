@@ -12,6 +12,7 @@
   display: flex;
   flex-wrap: wrap;
   height: 85%;
+  background: whitesmoke;
 }
 
 .block {
