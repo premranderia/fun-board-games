@@ -3,11 +3,12 @@ import { CodeBlock } from '../code-block.factory';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class CodeBlockService {
   private headers: HttpHeaders;
-  private server = 'https://code-name-node-server.herokuapp.com/api';
+  private server = `${environment.serverUrl}/api`;
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders();

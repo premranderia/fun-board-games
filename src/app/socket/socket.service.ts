@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { Event } from './socket-events';
+import { environment } from '../../environments/environment';
 
 import * as socketIo from 'socket.io-client';
 
-const SERVER_URL = 'https://code-name-node-server.herokuapp.com';
+const SERVER_URL = `${environment.serverUrl}`;
 
 @Injectable()
 export class SocketService {
