@@ -9,11 +9,13 @@ import { DATA } from '../../assets/game-sample-2';
 import { CodeBlockService } from './internal/code-block.service';
 import 'rxjs/add/operator/map';
 import { NgIf } from '@angular/common';
-// import { MatSlideToggleModule } from '@angular/material';
+import { SocketService } from '../socket/socket.service';
+import { Event } from '../socket/socket-events';
+
 @Component({
   selector: 'code-name',
   templateUrl: `./code-name.component.html`,
-  providers: [CodeBlockService],
+  providers: [CodeBlockService, SocketService],
   styleUrls: ['./code-name.component.css', '../app.css']
 })
 export class CodeNameComponent implements OnInit {
@@ -36,9 +38,13 @@ export class CodeNameComponent implements OnInit {
   private noOfRows = 5;
   private noOfColumns = 5;
   private totalBlocks = this.noOfColumns * this.noOfRows;
+  private ioConnection: any;
+  private messages: Array<any>;
+  private messageContent: string;
 
   constructor(private route: ActivatedRoute, private codeBlockService: CodeBlockService,
-    private router: Router) {
+    private router: Router,
+    private socketService: SocketService) {
     this.codeBlocks = [];
     this.colors = [];
     this.words = [];
@@ -46,6 +52,7 @@ export class CodeNameComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.initSocket();
     this.loading = true;
     let gameId = undefined;
 
@@ -63,6 +70,39 @@ export class CodeNameComponent implements OnInit {
         }
         this.resetGame();
       });
+  }
+
+  public initSocket() {
+    this.messages = [];
+
+    this.socketService.initSocket();
+    this.ioConnection = this.socketService.onMessage()
+      .subscribe((message: any) => {
+        if (message['id'] && message['id'] === this.gameId) {
+          this.codeBlocks = message['blocks'];
+        }
+        // this.messages.push(message);
+      });
+
+    this.socketService.onEvent(Event.CONNECT)
+      .subscribe(() => {
+      });
+
+    this.socketService.onEvent(Event.DISCONNECT)
+      .subscribe(() => {
+      });
+  }
+
+  public sendMessage(message: any): void {
+    if (!message) {
+      return;
+    }
+
+    this.socketService.send({
+      from: this.gameId,
+      message
+    });
+    this.messageContent = null;
   }
 
   public getSavedCodeBlock(id) {
@@ -198,6 +238,9 @@ export class CodeNameComponent implements OnInit {
       blocks: this.codeBlocks,
       spyViewCount: this.gameView === GameView.SPYMASTER ? 1 : 0,
     }).subscribe();
+    this.sendMessage({
+      id: this.gameId,
+      blocks: this.codeBlocks
+    });
   }
-
 }

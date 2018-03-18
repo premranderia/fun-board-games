@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class CodeBlockService {
   private headers: HttpHeaders;
-  private server = 'https://code-name-node-server.herokuapp.com/api';
+  private server = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders();
