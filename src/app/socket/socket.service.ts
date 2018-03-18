@@ -5,7 +5,7 @@ import { Event } from './socket-events';
 
 import * as socketIo from 'socket.io-client';
 
-const SERVER_URL = 'http://localhost:3000';
+const SERVER_URL = 'https://code-name-node-server.herokuapp.com';
 
 @Injectable()
 export class SocketService {
