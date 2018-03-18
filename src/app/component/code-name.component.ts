@@ -78,8 +78,8 @@ export class CodeNameComponent implements OnInit {
     this.socketService.initSocket();
     this.ioConnection = this.socketService.onMessage()
       .subscribe((message: any) => {
+        console.log(message);
         if (message['id'] && message['id'] === this.gameId) {
-          console.log(message);
           this.codeBlocks = message['blocks'];
         }
         // this.messages.push(message);
