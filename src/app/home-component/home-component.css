@@ -93,3 +93,70 @@
   color: #fff;
   opacity: 0.5;
 }
+
+/* ipad in landscape */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) { 
+ .logo {
+    width: 600px;
+    height: 800px;
+  }
+}
+
+/* ipad PRO in landscape */
+@media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 1.5) {
+ .logo {
+    width: 960px;
+    height: 1000px;
+  }
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape)
+and (-webkit-min-device-pixel-ratio: 2) { 
+ .logo {
+    width: 600px;
+    height: 800px;
+  }
+}
+
+/* iphone 6,7,8 */
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) 
+and (orientation : landscape) { 
+  .logo {
+    width: 250px;
+    height: 345px;
+  }
+}
+
+/* iphone 6,7,8 plus */
+@media only screen 
+and (min-device-width : 414px) 
+and (max-device-width : 736px) 
+and (orientation : landscape) {
+ .logo {
+    width: 250px;
+    height: 345px;
+  }
+}
+/* iphone X */
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 812px) 
+and (-webkit-device-pixel-ratio : 3)
+and (orientation : landscape) { 
+   .logo {
+    width: 250px;
+    height: 354px;
+  }
+}
