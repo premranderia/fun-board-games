@@ -108,6 +108,7 @@ export class CodeNameComponent implements OnInit {
     this.codeBlockService.getGame({
       id
     }).subscribe((data) => {
+      console.log(data['spyViewCount']);
       this.disableSpyMode = data['spyViewCount'] > 1;
       // Turn of viewing the game if the spy mode is already on
       // if (this.disableSpyMode) {

@@ -140,3 +140,24 @@ button.id-text.mat-mini-fab.mat-accent {
   font-size: 17px;
   font-weight: bold;
 }
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) { 
+  .block {
+    height: 16%;
+    font-size: 12px;
+  }
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape)
+and (-webkit-min-device-pixel-ratio: 2) { 
+  .block {
+    height: 16%;
+    font-size: 22px;
+  }
+}
