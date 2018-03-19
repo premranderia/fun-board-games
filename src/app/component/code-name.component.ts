@@ -40,7 +40,6 @@ export class CodeNameComponent implements OnInit {
   private totalBlocks = this.noOfColumns * this.noOfRows;
   private ioConnection: any;
   private messages: Array<any>;
-  private messageContent: string;
 
   constructor(private route: ActivatedRoute, private codeBlockService: CodeBlockService,
     private router: Router,
@@ -63,14 +62,38 @@ export class CodeNameComponent implements OnInit {
           this.gameView = GameView.SPYMASTER;
         }
         if (id) {
-          this.codeBlocks = await this.fetchCodeBlockById(id);
-          this.gameId = id;
+          const blocksByGameID = await this.fetchCodeBlockByGameId(id);
+          if (blocksByGameID && !_.isEmpty(blocksByGameID)) {
+            this.codeBlocks = blocksByGameID;
+            this.gameId = id;
+          }
         }
         this.initGame({ gameId: this.gameId, codeBlocks: this.codeBlocks });
       });
   }
 
-  public initSocket() {
+  public initGame({ gameId, codeBlocks }): void {
+    this.gameResultColor = undefined;
+    this.maxColorLeft = this.maxColor;
+    this.minColorLeft = this.minColor;
+    this.loading = true;
+    this.gameId = gameId || _.random(1, 10000);
+    this.shuffleColors();
+    this.shuffleWords();
+
+    // This means we are reseting the board
+    if (_.isUndefined(codeBlocks) || _.isEmpty(codeBlocks)) {
+      this.codeBlocks.length = 0;
+      this.createBlocks();
+      this.saveBoard();
+    }
+    this.loading = false;
+  }
+
+  /**
+   * This will make socket connection so spy master's board will be updated
+   */
+  public initSocket(): void {
     this.messages = [];
     this.socketService.initSocket();
     this.ioConnection = this.socketService.onMessage()
@@ -89,6 +112,10 @@ export class CodeNameComponent implements OnInit {
       });
   }
 
+  /**
+   * This will emit message to node
+   * @param message This will emit
+   */
   public sendMessage(message: any): void {
     if (!message) {
       return;
@@ -98,59 +125,12 @@ export class CodeNameComponent implements OnInit {
       from: this.gameId,
       message
     });
-    this.messageContent = null;
   }
 
-  public async fetchCodeBlockById(id): Promise<Array<CodeBlock>> {
-    let codeBlocks = undefined;
-    const data = await this.codeBlockService.getGame({
-      id
-    });
-    // this.disableSpyMode = data['spyViewCount'] > 1;
-    if (!_.isEmpty(data['blocks'])) {
-      codeBlocks = _.map(data['blocks'], (elem) => {
-        return new CodeBlock(elem);
-      });
-    }
-    return codeBlocks;
-  }
-
-  public initGame({ gameId, codeBlocks }) {
-    this.gameResultColor = undefined;
-    this.maxColorLeft = this.maxColor;
-    this.minColorLeft = this.minColor;
-    this.loading = true;
-    this.gameId = gameId || _.random(1, 10000);
-    this.shuffleColors();
-    this.shuffleWords();
-
-    // This means we are reseting the board
-    if (_.isUndefined(codeBlocks) || _.isEmpty(codeBlocks)) {
-      this.codeBlocks.length = 0;
-      this.createBlocks();
-      this.saveBoard();
-    }
-    this.loading = false;
-  }
-
-  public getBlock(id): CodeBlock {
-    const block = new CodeBlock({
-      color: this.colors[id],
-      word: this.words[id],
-      id
-    });
-    return block;
-  }
-
-  public createBlocks() {
-    let i = 0;
-    while (i < this.totalBlocks) {
-      this.codeBlocks.push(this.getBlock(i));
-      i++;
-    }
-  }
-
-  public getClass(block: CodeBlock) {
+  /**
+   * Get css for the code block
+   */
+  public getCodeBlockClass(block: CodeBlock): string {
     let css = undefined;
     css = (this.gameView === GameView.SPYMASTER && !this.loading) || block.clicked ? block.color : block.currentColor;
     if (block.clicked === true && this.isSpyMasterViewOn()) {
@@ -159,22 +139,33 @@ export class CodeNameComponent implements OnInit {
     return css;
   }
 
-  public toggleGameView() {
+  /**
+   * Toggle spymaster view on/off
+   */
+  public toggleGameView(): void {
     if (this.disableSpyMode === false) {
       this.gameView = this.gameView === GameView.SPYMASTER ? GameView.PLAYER : GameView.SPYMASTER;
       this.saveBoard();
     }
   }
 
-  public isSpyMasterViewOn() {
+  /**
+   * Returns if spymaster mode is on/off
+   */
+  public isSpyMasterViewOn(): boolean {
     return this.gameView === GameView.SPYMASTER;
   }
 
-  public onBlockClick(block: CodeBlock) {
+  /**
+   * Action when a code block is clicked
+   */
+  public onBlockClick(block: CodeBlock): void {
+    // Do no action when spy master mode is on game is won/over
     if (this.gameResultColor !== undefined || this.isSpyMasterViewOn()) {
       return;
     }
     block.clicked = true;
+    // Save the board state
     this.saveBoard();
     this.isSpyMasterViewOn() === false ? block.currentColor = block.color : undefined;
     if (block.currentColor === CodeBlockColor.RED) {
@@ -188,10 +179,16 @@ export class CodeNameComponent implements OnInit {
     this.updateScore();
   }
 
+  /**
+   * Navigate to home page
+   */
   public navigateToHome() {
     this.router.navigate(['']);
   }
 
+  /**
+   * Update the score for the teams
+   */
   private updateScore() {
     if (this.maxColorLeft === 0) {
       this.gameResultColor = CodeBlockColor.RED;
@@ -200,6 +197,10 @@ export class CodeNameComponent implements OnInit {
     }
   }
 
+  /**
+   * Shuffle the colors array
+   * TODO: Move this to factory
+   */
   private shuffleColors() {
     const arr = [];
 
@@ -224,10 +225,16 @@ export class CodeNameComponent implements OnInit {
     this.colors = _.shuffle(arr);
   }
 
+  /**
+   * Shuffle the words
+   */
   private shuffleWords() {
     this.words = _.sampleSize(DATA, this.totalBlocks);
   }
 
+  /**
+   * Save the board and emit the message for socket
+   */
   private saveBoard() {
     this.codeBlockService.storeGame({
       id: this.gameId,
@@ -238,6 +245,38 @@ export class CodeNameComponent implements OnInit {
       id: this.gameId,
       blocks: this.codeBlocks
     });
+  }
+
+  /**
+   * Fetch codeblocks by game id
+   */
+  private async fetchCodeBlockByGameId(id): Promise<Array<CodeBlock>> {
+    let codeBlocks = undefined;
+    const data = await this.codeBlockService.getGame({
+      id
+    });
+    // this.disableSpyMode = data['spyViewCount'] > 1;
+    if (!_.isEmpty(data['blocks'])) {
+      codeBlocks = _.map(data['blocks'], (elem) => {
+        return new CodeBlock(elem);
+      });
+    }
+    return codeBlocks;
+  }
+
+  /**
+   * Create code blocks
+   */
+  private createBlocks() {
+    let id = 0;
+    while (id < this.totalBlocks) {
+      this.codeBlocks.push(new CodeBlock({
+        color: this.colors[id],
+        word: this.words[id],
+        id
+      }));
+      id++;
+    }
   }
 }
 
