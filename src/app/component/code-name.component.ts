@@ -46,6 +46,7 @@ export class CodeNameComponent implements OnInit {
     private router: Router,
     private socketService: SocketService) {
     this.codeBlocks = [];
+    this.gameId = undefined;
     this.colors = [];
     this.words = [];
     this.gameView = GameView.PLAYER;
@@ -54,27 +55,23 @@ export class CodeNameComponent implements OnInit {
   async ngOnInit() {
     this.initSocket();
     this.loading = true;
-    let gameId = undefined;
-
-    // await vm.grid.ready;
-
-    // vm.grid.ready.subscribe();
     this.route.queryParams
       // .toPromise();
-      .subscribe((params: Params) => {
+      .subscribe(async (params: Params) => {
+        let id = params['id'];
         if (params['spy'] && !!params['spy'] === true) {
           this.gameView = GameView.SPYMASTER;
         }
-        if (params['id']) {
-          this.getSavedCodeBlock(params['id']);
+        if (id) {
+          this.codeBlocks = await this.fetchCodeBlockById(id);
+          this.gameId = id;
         }
-        this.resetGame();
+        this.initGame({ gameId: this.gameId, codeBlocks: this.codeBlocks });
       });
   }
 
   public initSocket() {
     this.messages = [];
-
     this.socketService.initSocket();
     this.ioConnection = this.socketService.onMessage()
       .subscribe((message: any) => {
@@ -104,36 +101,35 @@ export class CodeNameComponent implements OnInit {
     this.messageContent = null;
   }
 
-  public getSavedCodeBlock(id) {
-    this.codeBlockService.getGame({
+  public async fetchCodeBlockById(id): Promise<Array<CodeBlock>> {
+    let codeBlocks = undefined;
+    const data = await this.codeBlockService.getGame({
       id
-    }).subscribe((data) => {
-      console.log(data['spyViewCount']);
-      this.disableSpyMode = data['spyViewCount'] > 1;
-      // Turn of viewing the game if the spy mode is already on
-      // if (this.disableSpyMode) {
-      //   this.gameView = GameView.PLAYER;
-      // }
-      if (!_.isEmpty(data['blocks'])) {
-        this.codeBlocks = _.map(data['blocks'], (elem) => {
-          return new CodeBlock(elem);
-        });
-        this.gameId = id;
-      }
     });
+    // this.disableSpyMode = data['spyViewCount'] > 1;
+    if (!_.isEmpty(data['blocks'])) {
+      codeBlocks = _.map(data['blocks'], (elem) => {
+        return new CodeBlock(elem);
+      });
+    }
+    return codeBlocks;
   }
 
-  public resetGame() {
+  public initGame({ gameId, codeBlocks }) {
     this.gameResultColor = undefined;
     this.maxColorLeft = this.maxColor;
     this.minColorLeft = this.minColor;
     this.loading = true;
-    this.gameId = _.random(1, 10000);
-    this.codeBlocks.length = 0;
+    this.gameId = gameId || _.random(1, 10000);
     this.shuffleColors();
     this.shuffleWords();
-    this.createBlocks();
-    this.saveBoard();
+
+    // This means we are reseting the board
+    if (_.isUndefined(codeBlocks) || _.isEmpty(codeBlocks)) {
+      this.codeBlocks.length = 0;
+      this.createBlocks();
+      this.saveBoard();
+    }
     this.loading = false;
   }
 
@@ -243,4 +239,10 @@ export class CodeNameComponent implements OnInit {
       blocks: this.codeBlocks
     });
   }
+}
+
+interface GameData {
+  id: number;
+  blocks: Array<CodeBlock>;
+  spyViewCount: number;
 }

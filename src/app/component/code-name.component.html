@@ -14,7 +14,7 @@
     <span class="result RED" *ngIf="gameResultColor && gameResultColor === CodeBlockColor.BLACK">
       Game Over !!!
     </span>
-    <button mat-raised-button (click)="resetGame()" color="warn" class="reset">Reset</button>
+    <button mat-raised-button (click)="initGame({})" color="warn" class="reset">Reset</button>
     <mat-slide-toggle class="slide-toggle" [checked]="isSpyMasterViewOn()" (change)="toggleGameView()">
       Spy View
     </mat-slide-toggle>
