@@ -25,7 +25,13 @@ export class CodeBlockService {
   }
 
   getGame({ id }) {
-    return this.http.get(`${this.server}/code-name/${id}`);
+    return new Promise((resolve, reject) => {
+      this.http.get(`${this.server}/code-name/${id}`).toPromise().then((data) => {
+        resolve(data);
+      }, () => {
+        reject();
+      });
+    });
   }
 
 }

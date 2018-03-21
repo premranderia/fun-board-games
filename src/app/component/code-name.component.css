@@ -1,6 +1,6 @@
 .code-name {
   font-family: sans-serif;
-  font-size: 22px;
+  /* font-size: 22px; */
   user-select: none;
   height: 100%;
   width: 100%;
@@ -54,22 +54,27 @@
   background: #dc3545;
 }
 .card-left {
-  padding: 15px;
-  font-size: 30px;
+  padding: 0 15px;
+  /* font-size: 30px; */
 }
 .reset {
-  float: right;
   border: 0;
   color: #fff;
   background: #EC2E05;
-  font-size: 14px; 
-  margin-top: 4px;
+  padding: 0;
+  padding: 0 10px;
 }
 
 .header {
-  padding: 8px 1.5%;
   background-color: #2c2c2c;
   color: #fff;
+  height: 50px;
+  font-size: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px;
 }
 
 input {
@@ -91,15 +96,7 @@ input {
   border-color: #b8daff;
 }
 .result {
-  /* margin-top: auto;
-  margin-right: auto;
-  margin-left: auto;
-  left: 47%;
-  position: absolute; */
-  font-size: 30px;
-  padding: 15px;
-  position: relative;
-  left: 18%;
+  /* font-size: 30px; */
 }
 .block.clicked {
   text-decoration: line-through;
@@ -131,14 +128,17 @@ input {
   cursor: pointer;
   height: 15px;
 }
-.id-text {
-  left: 40%;
-  top: -11px;
-}
 button.id-text.mat-mini-fab.mat-accent {
-  width: 70px;
-  font-size: 17px;
+  width: 100px;
+  /* font-size: 17px; */
   font-weight: bold;
+}
+.cards-count {
+  display: flex;
+}
+.message {
+  display: flex;
+  justify-content: center;
 }
 
 /* ipad in landscape */
@@ -148,6 +148,10 @@ and (max-device-width : 1024px)
 and (orientation : landscape) { 
   .block {
     height: 16%;
+    font-size: 12px;
+    word-break: break-all;
+  }
+  .header {
     font-size: 12px;
   }
 }
@@ -160,6 +164,10 @@ and (-webkit-min-device-pixel-ratio: 2) {
   .block {
     height: 16%;
     font-size: 22px;
+    word-break: break-all;
+  }
+  .header {
+    font-size: 12px;
   }
 }
 
@@ -172,6 +180,10 @@ and (orientation : landscape) {
     height: 16%;
     font-size: 19px;
     max-width: 120px;
+    word-break: break-all;
+  }
+  .header {
+    font-size: 12px;
   }
 }
 
@@ -184,5 +196,21 @@ and (orientation : landscape) {
     height: 16%;
     font-size: 19px;
     max-width: 120px;
+    word-break: break-all;
+  }
+  .header {
+    font-size: 12px;
+  }
+}
+
+
+/* iphone X */
+@media only screen 
+and (min-device-width : 737px) 
+and (max-device-width : 812px) 
+and (-webkit-device-pixel-ratio : 3)
+and (orientation : landscape) {
+  .header {
+    font-size: 12px;
   }
 }
