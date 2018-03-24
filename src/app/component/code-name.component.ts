@@ -72,7 +72,7 @@ export class CodeNameComponent implements OnInit {
       });
   }
 
-  public initGame({ gameId, codeBlocks }): void {
+  public initGame({ gameId, codeBlocks }: any): void {
     this.gameResultColor = undefined;
     this.maxColorLeft = this.maxColor;
     this.minColorLeft = this.minColor;
