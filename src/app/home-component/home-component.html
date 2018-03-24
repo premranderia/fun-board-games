@@ -10,7 +10,7 @@
           <input type="Button" class="btn new-game" (click)="navigate({})" value="New Game" />
         </div>
         <div class="child">
-          <input type="text" inputmode="numeric" pattern="[0-9]*" placeholder="ID" class="btn input-game" [(ngModel)]="gameId">
+          <input type="text" inputmode="numeric" pattern="[0-9]*" placeholder="ID" class="btn input-game" [(ngModel)]="gameId" value="0">
           <!-- <input matInput type="number" #postalCode maxlength="5" placeholder="Postal Code"> -->
           <mat-slide-toggle class="slide-toggle" [checked]="spyMode" color="warn" (change)="spyMode = !spyMode">
             <label class="label">Spy View</label>
