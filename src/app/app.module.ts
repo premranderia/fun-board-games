@@ -10,7 +10,11 @@ import { HomeRoutesComponent } from './routes/home-routes.component';
 import { CodeNameRoutesComponent } from './routes/code-name-routes.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSlideToggleModule, MatButtonModule } from '@angular/material';
+import {
+  MatSlideToggleModule,
+  MatButtonModule,
+  MatInputModule,
+} from '@angular/material';
 // import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   imports: [
@@ -21,6 +25,7 @@ import { MatSlideToggleModule, MatButtonModule } from '@angular/material';
     BrowserAnimationsModule,
     MatSlideToggleModule,
     MatButtonModule,
+    MatInputModule,
   ],
   declarations: [AppComponent, CodeNameComponent, HomeComponent, HomeRoutesComponent, CodeNameRoutesComponent],
   bootstrap: [AppComponent]
