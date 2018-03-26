@@ -31,7 +31,7 @@
   </div>
   <div class="content-box">
     <div class="block" [ngClass]="getCodeBlockClass(block)" *ngFor="let block of codeBlocks;" (click)="onBlockClick(block)">
-      <div class="block-content" *ngIf="!loading">{{ block.word }}</div>
+      <div class="block-content" *ngIf="!loading && (!block.clicked || isSpyMasterViewOn())">{{ block.word }}</div>
     </div>
   </div>
 </div>
