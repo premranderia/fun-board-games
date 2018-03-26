@@ -20,10 +20,12 @@
           Game Over !!!
         </span>
       </div>
-      <div class="col-2">
+      <div class="col-1">
         <mat-slide-toggle *ngIf="isSpyMasterViewOn()" class="slide-toggle-board" (change)="toggleShowAllCards()">
           Board
         </mat-slide-toggle>
+      </div>
+      <div class="col-1">
         <mat-slide-toggle class="slide-toggle" [checked]="isSpyMasterViewOn()" (change)="toggleGameView()">
           Spy
         </mat-slide-toggle>
