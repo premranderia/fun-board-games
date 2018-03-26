@@ -28,7 +28,7 @@
   text-align: center;
   text-transform: uppercase;
   font-size: 30px;
-  border: 1px dotted #ccc;
+  /* border: 1px dotted #ccc; */
   border-radius: 20px;
   color: #040505;
   height: calc(100% / 5);
