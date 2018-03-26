@@ -8,12 +8,14 @@
   position: absolute;
   background-color: #050000;
   background-color: #a66a10;
+  /* background-color: #005e61; */
     background-image: url(https://www.transparenttextures.com/patterns/wood-pattern.png);
 }
 .content-box {
   display: flex;
   flex-wrap: wrap;
   height: 85%;
+  margin-top: 20px;
 }
 
 .block {
