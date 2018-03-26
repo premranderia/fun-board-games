@@ -10,7 +10,8 @@
       </div>
       <div class="col-6 message">
         <button mat-mini-fab color="accent" class="id-text" *ngIf="!gameResultColor">
-          <span>ID: {{ gameId }}</span>
+          <span>ID: {{ gameId }}
+          </span>
         </button>
         <span class="result GREEN" *ngIf="gameResultColor && gameResultColor !== CodeBlockColor.BLACK">
           Congrats {{ gameResultColor }} team !!!
