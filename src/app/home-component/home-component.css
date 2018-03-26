@@ -8,7 +8,9 @@
   -webkit-flex-direction: row;
   flex-direction: row;
   height:100%;
-  background: whitesmoke;
+  background-color: #050000;
+  /* background-color: #005e61; */
+  background-image: url(../../assets/wood-pattern.png);
 }
 .content {
   margin: auto;
@@ -18,9 +20,8 @@
   background-color: #3d0000;
   background-image: url(../../assets/wood-pattern.png);
   background-color: #050000;
-  background-color: #a66a10;
-      /* background-color: #005e61; */
-    background-image: url(https://www.transparenttextures.com/patterns/wood-pattern.png);
+  /* background-color: #a66a10; */
+  /* background-color: #005e61; */
 }
 .title {
   font-size: 30px;
