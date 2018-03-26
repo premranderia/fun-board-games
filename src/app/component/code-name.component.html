@@ -20,6 +20,9 @@
         </span>
       </div>
       <div class="col-2">
+        <mat-slide-toggle *ngIf="isSpyMasterViewOn()" class="slide-toggle-board" (change)="toggleShowAllCards()">
+          Board
+        </mat-slide-toggle>
         <mat-slide-toggle class="slide-toggle" [checked]="isSpyMasterViewOn()" (change)="toggleGameView()">
           Spy
         </mat-slide-toggle>
@@ -31,7 +34,7 @@
   </div>
   <div class="content-box">
     <div class="block" [ngClass]="getCodeBlockClass(block)" *ngFor="let block of codeBlocks;" (click)="onBlockClick(block)">
-      <div class="block-content" *ngIf="!loading && (!block.clicked || isSpyMasterViewOn())">{{ block.word }}</div>
+      <div class="block-content" *ngIf="!loading && (!block.clicked || showAllCards)">{{ block.word }}</div>
     </div>
   </div>
 </div>

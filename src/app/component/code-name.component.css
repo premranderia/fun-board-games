@@ -101,12 +101,8 @@ input {
   background-color: #cce5ff;
   border-color: #b8daff;
 }
-.result {
-  /* font-size: 30px; */
-}
 .block.clicked {
   text-decoration: line-through;
-  opacity: 0.6;
   text-decoration-style: dotted;
 }
 .label {
@@ -120,6 +116,9 @@ input {
 .slide-toggle {
   margin: 10px;
   float:right;
+}
+.slide-toggle-board {
+  margin: 10px;
 }
 .block-content {
   display: flex;

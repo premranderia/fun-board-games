@@ -31,6 +31,7 @@ export class CodeNameComponent implements OnInit {
   public minColorLeft: number;
   public gameResultColor: CodeBlockColor;
   public CodeBlockColor = CodeBlockColor;
+  public showAllCards = false;
 
   private gameView: GameView;
   private maxColor = 9;
@@ -154,6 +155,13 @@ export class CodeNameComponent implements OnInit {
    */
   public isSpyMasterViewOn(): boolean {
     return this.gameView === GameView.SPYMASTER;
+  }
+
+  /**
+   * Returns if spymaster mode is on/off
+   */
+  public toggleShowAllCards() {
+    this.showAllCards = !this.showAllCards;
   }
 
   /**
