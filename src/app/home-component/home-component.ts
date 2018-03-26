@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private router: Router) { }
   ngOnInit() {
-    this.gameId = 0;
+    // this.gameId = 0;
     this.spyMode = true;
   }
   public enterGameWithId() {

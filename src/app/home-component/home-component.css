@@ -84,6 +84,8 @@ div.right > div.child {
   color: #4d4d4d;
   margin-right: 10px;
   color: #ef9a9a;
+  height: 30px;
+  margin-top: 10px;
 }
 .existing-game {
   background: #dc3545;
