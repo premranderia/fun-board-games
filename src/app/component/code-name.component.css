@@ -34,6 +34,9 @@
   height: calc(100% / 5);
   background: rgba(255,255,255,0.7);
 }
+.block.WHITE:hover, .block.WHITE:focus, .block.WHITE:active {
+  opacity: 0.5;
+}
 
 .block.YELLOW {
   background: #E9EC05;

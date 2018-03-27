@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { CodeBlock } from './code-block.factory';
 import { ActivatedRoute, Params, UrlSegment, Router } from '@angular/router';
@@ -19,6 +19,9 @@ import { Event } from '../socket/socket-events';
   styleUrls: ['./code-name.component.css', '../app.css']
 })
 export class CodeNameComponent implements OnInit {
+  @ViewChild('audioPlayerOnLoadSound') audioPlayerOnLoadSound: ElementRef;
+  @ViewChild('audioLockSound') audioLockSound: ElementRef;
+
   public rows: Array<any>;
   public columns: Array<any>;
   public codeBlocks: Array<CodeBlock>;
@@ -53,6 +56,7 @@ export class CodeNameComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.audioPlayerOnLoadSound.nativeElement.play();
     this.initSocket();
     this.loading = true;
     this.route.queryParams
@@ -169,9 +173,10 @@ export class CodeNameComponent implements OnInit {
    */
   public onBlockClick(block: CodeBlock): void {
     // Do no action when spy master mode is on game is won/over
-    if (this.gameResultColor !== undefined || this.isSpyMasterViewOn()) {
+    if (this.gameResultColor !== undefined || this.isSpyMasterViewOn() || block.clicked) {
       return;
     }
+    this.audioLockSound.nativeElement.play();
     block.clicked = true;
     // Save the board state
     this.saveBoard();
@@ -185,6 +190,9 @@ export class CodeNameComponent implements OnInit {
       return;
     }
     this.updateScore();
+    setTimeout(() => {
+      this.audioLockSound.nativeElement.pause();
+    }, 2000);
   }
 
   /**

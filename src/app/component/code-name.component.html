@@ -40,4 +40,10 @@
       <div class="block-content" *ngIf="!loading && (!block.clicked || showAllCards)">{{ block.word }}</div>
     </div>
   </div>
+  <audio #audioPlayerOnLoadSound>
+    <source src='../../assets/kbc.mp3' type="audio/mp3">
+  </audio>
+  <audio #audioLockSound>
+    <source src='../../assets/lock-tune.mp3' type="audio/mp3">
+  </audio>
 </div>
