@@ -37,6 +37,7 @@ export class CodeNameComponent implements OnInit {
   public gameResultColor: CodeBlockColor;
   public CodeBlockColor = CodeBlockColor;
   public showAllCards = false;
+  public isModePotrait = true;
 
   private gameView: GameView;
   private maxColor = 9;
@@ -58,6 +59,10 @@ export class CodeNameComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.isModePotrait = this.checkIfOrientationIsPotrait();
+    window.addEventListener('orientationchange', () => {
+      this.isModePotrait = this.checkIfOrientationIsPotrait();
+    });
     this.audioPlayerOnLoadSound.nativeElement.play();
     this.initSocket();
     this.loading = true;
@@ -77,6 +82,9 @@ export class CodeNameComponent implements OnInit {
         }
         this.initGame({ gameId: this.gameId, codeBlocks: this.codeBlocks });
       });
+  }
+  public checkIfOrientationIsPotrait() {
+    return window.innerHeight > window.innerWidth;
   }
 
   public initGame({ gameId, codeBlocks }: any): void {

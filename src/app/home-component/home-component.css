@@ -176,3 +176,10 @@ and (orientation : landscape) {
     height: 354px;
   }
 }
+@media screen and (orientation:potrait)
+{
+   .home-component
+   {
+      display: none;
+   }
+}

@@ -16,11 +16,21 @@ import { NgIf } from '@angular/common';
 export class HomeComponent implements OnInit {
   public gameId: number;
   public spyMode: boolean;
+  public isModePotrait: boolean;
 
   constructor(private router: Router) { }
   ngOnInit() {
     this.spyMode = true;
+    this.isModePotrait = this.checkIfOrientationIsPotrait();
+    window.addEventListener('orientationchange', () => {
+      this.isModePotrait = this.checkIfOrientationIsPotrait();
+    });
   }
+  public checkIfOrientationIsPotrait() {
+    console.log(window.innerHeight, window.innerWidth);
+    return window.innerHeight > window.innerWidth;
+  }
+
   public enterGameWithId() {
     let queryParams = {};
     if (this.gameId > 0) {

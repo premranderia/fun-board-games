@@ -1,5 +1,5 @@
 <div class="home-component">
-  <div class="content">
+  <div class="content" *ngIf="!isModePotrait">
     <div class="row">
       <img src="../../assets/code-name-logo.png" class="img-logo">
     </div>
@@ -21,5 +21,8 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="land-scape" *ngIf="isModePotrait">
+    Rotate Your Phone 90 Deg !!!
   </div>
 </div>

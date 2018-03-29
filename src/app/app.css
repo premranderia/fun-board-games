@@ -61,3 +61,12 @@ input:checked + .slider:before {
 .toggle {
   float: right;
 }
+.land-scape {
+  color: #fff;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  height: 100%;
+}

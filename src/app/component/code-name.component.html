@@ -1,5 +1,5 @@
 <div class="code-name">
-  <div class="container-fluid">
+  <div class="container-fluid" *ngIf="!isModePotrait">
     <div class="row header">
       <div class="col-2">
         <span class="label" (click)="navigateToHome()"> Code Names </span>
@@ -35,7 +35,7 @@
       </div>
     </div>
   </div>
-  <div class="content-box">
+  <div class="content-box" *ngIf="!isModePotrait">
     <div class="block" [ngClass]="getCodeBlockClass(block)" *ngFor="let block of codeBlocks;" (click)="onBlockClick(block)">
       <div class="block-content" *ngIf="!loading && (!block.clicked || showAllCards)">{{ block.word }}</div>
     </div>
@@ -52,4 +52,8 @@
   <audio #audioGameWinnerSound>
     <source src='../../assets/game-winner.mp3' type="audio/mp3">
   </audio>
+
+  <div class="land-scape" *ngIf="isModePotrait">
+    Rotate Your Phone 90 Deg !!!
+  </div>
 </div>
