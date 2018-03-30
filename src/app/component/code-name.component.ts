@@ -37,6 +37,7 @@ export class CodeNameComponent implements OnInit {
   public gameResultColor: CodeBlockColor;
   public CodeBlockColor = CodeBlockColor;
   public showAllCards = false;
+  public spyViewCount = 0;
 
   private gameView: GameView;
   private maxColor = 9;
@@ -108,10 +109,13 @@ export class CodeNameComponent implements OnInit {
         if (message['id'] && Number(message['id']) === Number(this.gameId)) {
           this.codeBlocks = message['blocks'];
         }
+        if (message['count']) {
+          // this.spyViewCount = message['count'];
+        }
       });
 
     this.socketService.onEvent(Event.CONNECT)
-      .subscribe(() => {
+      .subscribe((message: any) => {
       });
 
     this.socketService.onEvent(Event.DISCONNECT)

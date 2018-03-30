@@ -18,9 +18,9 @@
   box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
   /* padding: 20px 50px; */
   padding: 50px 200px;
-  background-color: #3d0000;
   background-image: url(../../assets/wood-pattern.png);
-  background-color: #050000;
+  /* background-color: #3d0000; */
+  /* background-color: #050000; */
   /* background-color: #a66a10; */
   /* background-color: #005e61; */
 }
@@ -103,6 +103,10 @@ div.right > div.child {
 .label {
   color: #ef9a9a;
   font-weight: bold;
+}
+.spy-info {
+  color: #fff;
+  font-size: 14px;
 }
 .mat-fab.mat-accent[disabled], .mat-fab.mat-primary[disabled], .mat-fab.mat-warn[disabled], .mat-fab[disabled][disabled], .mat-mini-fab.mat-accent[disabled], .mat-mini-fab.mat-primary[disabled], .mat-mini-fab.mat-warn[disabled], .mat-mini-fab[disabled][disabled], .mat-raised-button.mat-accent[disabled], .mat-raised-button.mat-primary[disabled], .mat-raised-button.mat-warn[disabled], .mat-raised-button[disabled][disabled] {
   background: #dc3545;
