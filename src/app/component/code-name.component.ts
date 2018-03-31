@@ -11,7 +11,8 @@ import 'rxjs/add/operator/map';
 import { NgIf } from '@angular/common';
 import { SocketService } from '../socket/socket.service';
 import { Event } from '../socket/socket-events';
-
+import { ROUTES } from '../routes/route.constant';
+import { QueryParams } from '../home-component/home-component';
 @Component({
   selector: 'code-name',
   templateUrl: `./code-name.component.html`,
@@ -64,9 +65,9 @@ export class CodeNameComponent implements OnInit {
     this.loading = true;
     this.route.queryParams
       // .toPromise();
-      .subscribe(async (params: Params) => {
-        let id = params['id'];
-        if (params['spy'] && !!params['spy'] === true) {
+      .subscribe(async (params: QueryParams) => {
+        let id = params.id;
+        if (params.spy && !!params.spy === true) {
           this.gameView = GameView.SPYMASTER;
         }
         if (id) {
@@ -76,21 +77,21 @@ export class CodeNameComponent implements OnInit {
             this.gameId = id;
           }
         }
-        this.initGame({ gameId: this.gameId, codeBlocks: this.codeBlocks });
+        this.initGame({ id: this.gameId, blocks: this.codeBlocks });
       });
   }
 
-  public initGame({ gameId, codeBlocks }: any): void {
+  public initGame({ id, blocks }: GameData): void {
     this.gameResultColor = undefined;
     this.maxColorLeft = this.maxColor;
     this.minColorLeft = this.minColor;
     this.loading = true;
-    this.gameId = gameId || _.random(1, 10000);
+    this.gameId = id || _.random(1, 10000);
     this.shuffleColors();
     this.shuffleWords();
 
     // This means we are reseting the board
-    if (_.isUndefined(codeBlocks) || _.isEmpty(codeBlocks)) {
+    if (_.isUndefined(blocks) || _.isEmpty(blocks)) {
       this.codeBlocks.length = 0;
       this.createBlocks();
       this.saveBoard();
@@ -105,12 +106,9 @@ export class CodeNameComponent implements OnInit {
     this.messages = [];
     this.socketService.initSocket();
     this.ioConnection = this.socketService.onMessage()
-      .subscribe((message: any) => {
-        if (message['id'] && Number(message['id']) === Number(this.gameId)) {
-          this.codeBlocks = message['blocks'];
-        }
-        if (message['count']) {
-          // this.spyViewCount = message['count'];
+      .subscribe((message: GameData & { count: number }) => {
+        if (message && message.id && Number(message.id) === Number(this.gameId)) {
+          this.codeBlocks = message.blocks;
         }
       });
 
@@ -127,7 +125,7 @@ export class CodeNameComponent implements OnInit {
    * This will emit message to node
    * @param message This will emit
    */
-  public sendMessage(message: any): void {
+  public sendMessage(message: GameData): void {
     if (!message) {
       return;
     }
@@ -170,7 +168,7 @@ export class CodeNameComponent implements OnInit {
   /**
    * Returns if spymaster mode is on/off
    */
-  public toggleShowAllCards() {
+  public toggleShowAllCards(): void {
     this.showAllCards = !this.showAllCards;
   }
 
@@ -209,14 +207,14 @@ export class CodeNameComponent implements OnInit {
   /**
    * Navigate to home page
    */
-  public navigateToHome() {
-    this.router.navigate(['']);
+  public navigateToHome(): void {
+    this.router.navigate([ROUTES.HOME]);
   }
 
   /**
    * Update the score for the teams
    */
-  private updateScore() {
+  private updateScore(): void {
     if (this.maxColorLeft === 0) {
       this.gameResultColor = CodeBlockColor.RED;
     } else if (this.minColorLeft === 0) {
@@ -228,7 +226,7 @@ export class CodeNameComponent implements OnInit {
    * Shuffle the colors array
    * TODO: Move this to factory
    */
-  private shuffleColors() {
+  private shuffleColors(): void {
     const arr = [];
 
     arr.push(CodeBlockColor.BLACK);
@@ -255,14 +253,14 @@ export class CodeNameComponent implements OnInit {
   /**
    * Shuffle the words
    */
-  private shuffleWords() {
+  private shuffleWords(): void {
     this.words = _.sampleSize(DATA, this.totalBlocks);
   }
 
   /**
    * Save the board and emit the message for socket
    */
-  private saveBoard() {
+  private saveBoard(): void {
     this.codeBlockService.storeGame({
       id: this.gameId,
       blocks: this.codeBlocks,
@@ -279,12 +277,12 @@ export class CodeNameComponent implements OnInit {
    */
   private async fetchCodeBlockByGameId(id): Promise<Array<CodeBlock>> {
     let codeBlocks = undefined;
-    const data = await this.codeBlockService.getGame({
+    const data: GameData = await this.codeBlockService.getGame({
       id
     });
     // this.disableSpyMode = data['spyViewCount'] > 1;
-    if (!_.isEmpty(data['blocks'])) {
-      codeBlocks = _.map(data['blocks'], (elem) => {
+    if (!_.isEmpty(data.blocks)) {
+      codeBlocks = _.map(data.blocks, (elem) => {
         return new CodeBlock(elem);
       });
     }
@@ -294,7 +292,7 @@ export class CodeNameComponent implements OnInit {
   /**
    * Create code blocks
    */
-  private createBlocks() {
+  private createBlocks(): void {
     let id = 0;
     while (id < this.totalBlocks) {
       this.codeBlocks.push(new CodeBlock({
@@ -307,8 +305,8 @@ export class CodeNameComponent implements OnInit {
   }
 }
 
-interface GameData {
-  id: number;
-  blocks: Array<CodeBlock>;
-  spyViewCount: number;
+export interface GameData {
+  id?: number;
+  blocks?: Array<CodeBlock>;
+  spyViewCount?: number;
 }
