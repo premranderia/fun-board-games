@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
+import { ROUTES } from './routes/route.constant';
 import { CodeNameComponent } from './component/code-name.component';
 import { HomeRoutesComponent } from './routes/home-routes.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', component: HomeRoutesComponent },
+  { path: ROUTES.HOME, pathMatch: 'full', component: HomeRoutesComponent },
   {
-    path: 'game',
+    path: ROUTES.GAME,
     component: CodeNameComponent,
 
   },
-  { path: '**', redirectTo: '' }
+  { path: ROUTES.ANY, redirectTo: '' }
 ];
 
 @NgModule({

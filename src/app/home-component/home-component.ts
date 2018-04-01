@@ -6,7 +6,7 @@ import * as _ from 'lodash';
 import { DATA } from '../../assets/game-sample';
 import 'rxjs/add/operator/map';
 import { NgIf } from '@angular/common';
-
+import { ROUTES } from '../routes/route.constant';
 @Component({
   selector: 'home-component',
   templateUrl: './home-component.html',
@@ -18,22 +18,29 @@ export class HomeComponent implements OnInit {
   public spyMode: boolean;
 
   constructor(private router: Router) { }
+
   ngOnInit() {
     this.spyMode = true;
   }
-  public enterGameWithId() {
-    let queryParams = {};
+
+  public enterGameWithId(): void {
+    let queryParams: QueryParams = {};
     if (this.gameId > 0) {
-      queryParams['id'] = this.gameId;
+      queryParams.id = this.gameId;
     }
     if (this.spyMode) {
-      queryParams['spy'] = this.spyMode;
+      queryParams.spy = this.spyMode;
     }
     this.navigate(queryParams);
   }
-  public navigate(queryParams) {
-    this.router.navigate(['/game'], {
+
+  public navigate(queryParams): void {
+    this.router.navigate([`/${ROUTES.GAME}`], {
       queryParams
     });
   }
+}
+export interface QueryParams {
+  id?: number;
+  spy?: boolean;
 }
