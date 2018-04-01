@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   }
 
   public enterGameWithId(): void {
-    let queryParams: QueryParams;
+    let queryParams: QueryParams = {};
     if (this.gameId > 0) {
       queryParams.id = this.gameId;
     }

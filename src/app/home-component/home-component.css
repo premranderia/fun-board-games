@@ -7,7 +7,6 @@
   -moz-box-flex-direction: row;
   -webkit-flex-direction: row;
   flex-direction: row;
-  height:100%;
   background-color: #050000;
   /* background-color: #005e61; */
   /* background-image: url(../../assets/wood-pattern.png); */
@@ -113,15 +112,31 @@ div.right > div.child {
   color: #fff;
   opacity: 0.5;
 }
+.row-content {
+  justify-content: center;
+  align-items: center;
+}
 
 /* ipad in landscape */
 @media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
 and (orientation : landscape) { 
- .logo {
+  .logo {
     width: 600px;
     height: 800px;
+  }
+  .content {
+    padding: 0;
+    width: 100%;
+  }
+  .img-logo {
+    width: 100%;
+    height: 100%;
+  }
+  .video-iframe {
+    width: 300px;
+    height: 245px;
   }
 }
 
@@ -131,9 +146,21 @@ and (orientation : landscape) {
   and (max-device-width: 1366px) 
   and (orientation: landscape) 
   and (-webkit-min-device-pixel-ratio: 1.5) {
- .logo {
+  .logo {
     width: 960px;
     height: 1000px;
+  }
+  .img-logo {
+    width: 100%;
+    height: 100%;
+  }
+  .content {
+    padding: 0;
+    width: 100%;
+  }
+  .video-iframe {
+    width: 300px;
+    height: 245px;
   }
 }
 
@@ -142,9 +169,21 @@ and (min-device-width : 768px)
 and (max-device-width : 1024px) 
 and (orientation : landscape)
 and (-webkit-min-device-pixel-ratio: 2) { 
- .logo {
+  .logo {
     width: 600px;
     height: 800px;
+  }
+  .content {
+    padding: 0;
+    width: 100%;
+  }
+  .img-logo {
+    width: 100%;
+    height: 100%;
+  }
+  .video-iframe {
+    width: 300px;
+    height: 245px;
   }
 }
 
@@ -157,6 +196,18 @@ and (orientation : landscape) {
     width: 250px;
     height: 345px;
   }
+  .content {
+    padding: 0;
+    width: 100%;
+  }
+  .img-logo {
+    width: 100%;
+    height: 100%;
+  }
+  .video-iframe {
+    width: 300px;
+    height: 245px;
+  }
 }
 
 /* iphone 6,7,8 plus */
@@ -164,9 +215,20 @@ and (orientation : landscape) {
 and (min-device-width : 414px) 
 and (max-device-width : 736px) 
 and (orientation : landscape) {
- .logo {
+  .logo {
     width: 250px;
     height: 345px;
+  }
+  .content {
+    padding: 0;
+  }
+  .img-logo {
+    width: 100%;
+    height: 100%;
+  }
+  .video-iframe {
+    width: 300px;
+    height: 245px;
   }
 }
 /* iphone X */
@@ -175,8 +237,124 @@ and (min-device-width : 375px)
 and (max-device-width : 812px) 
 and (-webkit-device-pixel-ratio : 3)
 and (orientation : landscape) { 
-   .logo {
+  .logo {
     width: 250px;
     height: 354px;
+  }
+  .content {
+    padding: 0;
+    width: 100%;
+  }
+  .img-logo {
+    width: 100%;
+    height: 100%;
+  }
+  .video-iframe {
+    width: 300px;
+    height: 245px;
+  }
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait)
+and (-webkit-min-device-pixel-ratio: 2) { 
+  .logo {
+    width: 600px;
+    height: 800px;
+  }
+  .content {
+    width: 100%;
+    padding: 0;
+  }
+  .img-logo {
+    width: 100%;
+    height: 100%;
+  }
+  .video-iframe {
+    width: 200px;
+    height: 145px;
+  }
+  .left {
+    margin: 30px;
+  }
+}
+
+/* iphone 6,7,8 */
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) 
+and (orientation : portrait) { 
+  .logo {
+    width: 250px;
+    height: 345px;
+  }
+  .content {
+    padding: 0;
+    width: 100%;
+  }
+  .img-logo {
+    width: 100%;
+    height: 100%;
+  }
+  .video-iframe {
+    width: 200px;
+    height: 145px;
+  }
+  .left {
+    margin: 30px;
+  }
+}
+
+/* iphone 6,7,8 plus */
+@media only screen 
+and (min-device-width : 414px) 
+and (max-device-width : 736px) 
+and (orientation : portrait) {
+  .logo {
+    width: 250px;
+    height: 345px;
+  }
+  .content {
+    padding: 0;
+    width: 100%;
+  }
+  .img-logo {
+    width: 100%;
+    height: 100%;
+  }
+  .video-iframe {
+    width: 200px;
+    height: 145px;
+  }
+   .left {
+    margin: 30px;
+  }
+}
+/* iphone X */
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 812px) 
+and (-webkit-device-pixel-ratio : 3)
+and (orientation : portrait) { 
+  .logo {
+    width: 250px;
+    height: 354px;
+  }
+  .content {
+    padding: 0;
+    width: 100%;
+  }
+  .img-logo {
+    width: 100%;
+    height: 100%;
+  }
+  .video-iframe {
+    width: 200px;
+    height: 145px;
+  }
+  .left {
+    margin: 30px;
   }
 }

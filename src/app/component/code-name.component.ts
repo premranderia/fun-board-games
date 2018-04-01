@@ -25,6 +25,11 @@ export class CodeNameComponent implements OnInit {
   @ViewChild('audioGameOverSound') audioGameOverSound: ElementRef;
   @ViewChild('audioGameWinnerSound') audioGameWinnerSound: ElementRef;
 
+  MAX_COLOR = 9;
+  MIN_COLOR = 8;
+  NO_OF_ROWS = 5;
+  NO_OF_COLUMNS = 5;
+
   public rows: Array<any>;
   public columns: Array<any>;
   public codeBlocks: Array<CodeBlock>;
@@ -41,11 +46,7 @@ export class CodeNameComponent implements OnInit {
   public spyViewCount = 0;
 
   private gameView: GameView;
-  private maxColor = 9;
-  private minColor = 8;
-  private noOfRows = 5;
-  private noOfColumns = 5;
-  private totalBlocks = this.noOfColumns * this.noOfRows;
+  private totalBlocks = this.NO_OF_ROWS * this.NO_OF_COLUMNS;
   private ioConnection: any;
   private messages: Array<any>;
 
@@ -82,9 +83,9 @@ export class CodeNameComponent implements OnInit {
   }
 
   public initGame({ id, blocks }: GameData): void {
-    this.gameResultColor = undefined;
-    this.maxColorLeft = this.maxColor;
-    this.minColorLeft = this.minColor;
+    this.gameResultColor = CodeBlockColor.NONE;
+    this.maxColorLeft = this.MAX_COLOR;
+    this.minColorLeft = this.MIN_COLOR;
     this.loading = true;
     this.gameId = id || _.random(1, 10000);
     this.shuffleColors();
@@ -96,6 +97,8 @@ export class CodeNameComponent implements OnInit {
       this.createBlocks();
       this.saveBoard();
     }
+    this.updateColorLeft();
+    this.checkWinner();
     this.loading = false;
   }
 
@@ -107,8 +110,15 @@ export class CodeNameComponent implements OnInit {
     this.socketService.initSocket();
     this.ioConnection = this.socketService.onMessage()
       .subscribe((message: GameData & { count: number }) => {
-        if (message && message.id && Number(message.id) === Number(this.gameId)) {
-          this.codeBlocks = message.blocks;
+        console.log(message);
+        if (message) {
+          if (message.id && Number(message.id) === Number(this.gameId)) {
+            this.codeBlocks = message.blocks;
+            this.updateColorLeft();
+          }
+          if (message.gameResult) {
+            this.gameResultColor = message.gameResult;
+          }
         }
       });
 
@@ -129,7 +139,6 @@ export class CodeNameComponent implements OnInit {
     if (!message) {
       return;
     }
-
     this.socketService.send({
       from: this.gameId,
       message
@@ -177,31 +186,21 @@ export class CodeNameComponent implements OnInit {
    */
   public onBlockClick(block: CodeBlock): void {
     // Do no action when spy master mode is on game is won/over
-    if (this.gameResultColor !== undefined || this.isSpyMasterViewOn() || block.clicked) {
+    if (this.isBlockClickDisabled(block)) {
       return;
     }
     block.clicked = true;
+    this.audioLockSound.nativeElement.play();
+    this.isSpyMasterViewOn() === false ? block.currentColor = block.color : undefined;
+    this.updateColorLeft();
+    this.checkWinner();
+    if (this.gameResultColor === CodeBlockColor.BLACK) {
+      this.audioGameOverSound.nativeElement.play();
+    } else {
+      this.audioGameWinnerSound.nativeElement.play();
+    }
     // Save the board state
     this.saveBoard();
-    this.isSpyMasterViewOn() === false ? block.currentColor = block.color : undefined;
-    if (block.currentColor === CodeBlockColor.RED) {
-      this.maxColorLeft--;
-    } else if (block.currentColor === CodeBlockColor.BLUE) {
-      this.minColorLeft--;
-    } else if (block.currentColor === CodeBlockColor.BLACK) {
-      this.gameResultColor = CodeBlockColor.BLACK;
-      this.audioGameOverSound.nativeElement.play();
-      return;
-    }
-    this.updateScore();
-    if (this.gameResultColor) {
-      this.audioGameWinnerSound.nativeElement.play();
-    } else {
-      this.audioLockSound.nativeElement.play();
-    }
-    setTimeout(() => {
-      this.audioLockSound.nativeElement.pause();
-    }, 2000);
   }
 
   /**
@@ -211,10 +210,34 @@ export class CodeNameComponent implements OnInit {
     this.router.navigate([ROUTES.HOME]);
   }
 
+  private isBlockClickDisabled(block: CodeBlock) {
+    return this.gameResultColor !== CodeBlockColor.NONE ||
+      this.isSpyMasterViewOn() ||
+      block.clicked;
+  }
+
+  private updateColorLeft() {
+    this.maxColorLeft = this.MAX_COLOR;
+    this.minColorLeft = this.MIN_COLOR;
+
+    this.codeBlocks.forEach((block: CodeBlock) => {
+      if (block.clicked) {
+        if (block.color === CodeBlockColor.RED) {
+          this.maxColorLeft--;
+        } else if (block.color === CodeBlockColor.BLUE) {
+          this.minColorLeft--;
+        } else if (block.color === CodeBlockColor.BLACK) {
+          this.gameResultColor = CodeBlockColor.BLACK;
+        }
+      }
+    });
+    // console.log()
+  }
+
   /**
    * Update the score for the teams
    */
-  private updateScore(): void {
+  private checkWinner(): void {
     if (this.maxColorLeft === 0) {
       this.gameResultColor = CodeBlockColor.RED;
     } else if (this.minColorLeft === 0) {
@@ -230,13 +253,13 @@ export class CodeNameComponent implements OnInit {
     const arr = [];
 
     arr.push(CodeBlockColor.BLACK);
-    let maxColor = this.maxColor;
+    let maxColor = this.MAX_COLOR;
     while (maxColor > 0) {
       arr.push(CodeBlockColor.RED);
       maxColor--;
     }
 
-    let minColor = this.minColor;
+    let minColor = this.MIN_COLOR;
     while (minColor > 0) {
       arr.push(CodeBlockColor.BLUE);
       minColor--;
@@ -268,7 +291,8 @@ export class CodeNameComponent implements OnInit {
     }).subscribe();
     this.sendMessage({
       id: this.gameId,
-      blocks: this.codeBlocks
+      blocks: this.codeBlocks,
+      gameResult: this.gameResultColor,
     });
   }
 
@@ -309,4 +333,5 @@ export interface GameData {
   id?: number;
   blocks?: Array<CodeBlock>;
   spyViewCount?: number;
+  gameResult?: CodeBlockColor;
 }

@@ -9,14 +9,14 @@
         <span class="BLUE card-left">{{ minColorLeft }}</span>
       </div>
       <div class="col-6 message">
-        <button mat-mini-fab color="accent" class="id-text" *ngIf="!gameResultColor">
+        <button mat-mini-fab color="accent" class="id-text" *ngIf="gameResultColor === CodeBlockColor.NONE">
           <span>ID: {{ gameId }}
           </span>
         </button>
-        <span class="result GREEN" *ngIf="gameResultColor && gameResultColor !== CodeBlockColor.BLACK">
+        <span class="result GREEN" *ngIf="gameResultColor !== CodeBlockColor.BLACK && gameResultColor !== CodeBlockColor.NONE">
           Congrats {{ gameResultColor }} team !!!
         </span>
-        <span class="result RED" *ngIf="gameResultColor && gameResultColor === CodeBlockColor.BLACK">
+        <span class="result RED" *ngIf="gameResultColor === CodeBlockColor.BLACK">
           Game Over !!!
         </span>
       </div>
