@@ -8,6 +8,7 @@
   -webkit-flex-direction: row;
   flex-direction: row;
   background-color: #050000;
+  height: 100%;
   /* background-color: #005e61; */
   /* background-image: url(../../assets/wood-pattern.png); */
 }
@@ -59,7 +60,6 @@
   margin: 30px 30px 0 0;
 }
 .img-logo {
-  width: 800px;
   height: 100px;
 }
 .child {
