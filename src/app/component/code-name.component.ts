@@ -196,7 +196,7 @@ export class CodeNameComponent implements OnInit {
     this.checkWinner();
     if (this.gameResultColor === CodeBlockColor.BLACK) {
       this.audioGameOverSound.nativeElement.play();
-    } else {
+    } else if (this.gameResultColor === CodeBlockColor.RED || this.gameResultColor === CodeBlockColor.BLACK) {
       this.audioGameWinnerSound.nativeElement.play();
     }
     // Save the board state

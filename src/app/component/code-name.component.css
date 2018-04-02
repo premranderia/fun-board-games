@@ -181,6 +181,10 @@ and (-webkit-min-device-pixel-ratio: 2) {
   .header {
     font-size: 12px;
   }
+
+  .show-cards {
+    display: none;
+  }
 }
 
 /* iphone 6,7,8 */
@@ -200,6 +204,10 @@ and (orientation : landscape) {
   .reset {
     font-size: 12px;
     min-width: 45px;
+  }
+
+  .show-cards {
+    display: none;
   }
 }
 
@@ -221,6 +229,11 @@ and (orientation : landscape) {
     font-size: 12px;
     min-width: 45px;
   }
+
+
+  .show-cards {
+    display: none;
+  }
 }
 
 
@@ -236,5 +249,110 @@ and (orientation : landscape) {
   .reset {
     font-size: 12px;
     min-width: 45px;
+  }
+
+
+  .show-cards {
+    display: none;
+  }
+}
+
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait)
+and (-webkit-min-device-pixel-ratio: 2) { 
+ .block {
+    flex: 0 1 18%;
+    font-size: 16px;
+  }
+  .header {
+    font-size: 16px;
+    padding: 0;
+  }
+}
+
+/* iphone 6,7,8 */
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) 
+and (orientation : portrait) { 
+ .block {
+    flex: 0 1 100%
+  }
+
+  .code-name {
+    overflow: scroll;
+  }
+  .header {
+    font-size: 16px;
+    padding: 0;
+  }
+  .cards-count {
+    display: block;
+  }
+  .reset {
+    display: none;
+  }
+  .show-cards {
+    display: none;
+  }
+}
+
+/* iphone 6,7,8 plus */
+@media only screen 
+and (min-device-width : 414px) 
+and (max-device-width : 736px) 
+and (orientation : portrait) {
+  .block {
+    flex: 0 1 100%
+  }
+
+  .code-name {
+    overflow: scroll;
+  }
+
+  .header {
+    font-size: 16px;
+    padding: 0;
+  }
+  .cards-count {
+    display: block;
+  }
+  .reset {
+    display: none;
+  }
+
+
+  .show-cards {
+    display: none;
+  }
+}
+/* iphone X */
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 812px) 
+and (-webkit-device-pixel-ratio : 3)
+and (orientation : portrait) { 
+  .block {
+    flex: 0 1 100%
+  }
+  .code-name {
+    overflow: scroll;
+  }
+  .header {
+    font-size: 16px;
+    padding: 0;
+  }
+  .cards-count {
+    display: block;
+  }
+  .reset {
+    display: none;
+  }
+
+  .show-cards {
+    display: none;
   }
 }
