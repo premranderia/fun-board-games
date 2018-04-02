@@ -9,7 +9,10 @@ const routes: Routes = [
   {
     path: ROUTES.GAME,
     component: CodeNameComponent,
-
+  },
+  {
+    path: ROUTES.CODE_NAME,
+    component: CodeNameComponent,
   },
   { path: ROUTES.ANY, redirectTo: '' }
 ];

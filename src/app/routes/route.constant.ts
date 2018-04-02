@@ -1,5 +1,6 @@
 export const ROUTES = {
   GAME: 'game',
   HOME: '',
-  ANY: '**'
+  ANY: '**',
+  CODE_NAME: 'code-name'
 };

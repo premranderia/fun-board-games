@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
   }
 
   public navigate(queryParams): void {
-    this.router.navigate([`/${ROUTES.GAME}`], {
+    this.router.navigate([`/${ROUTES.CODE_NAME}`], {
       queryParams
     });
   }

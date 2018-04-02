@@ -29,6 +29,7 @@ export class CodeNameComponent implements OnInit {
   MIN_COLOR = 8;
   NO_OF_ROWS = 5;
   NO_OF_COLUMNS = 5;
+  AUDIO_SOUNDS = false;
 
   public rows: Array<any>;
   public columns: Array<any>;
@@ -61,7 +62,9 @@ export class CodeNameComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.audioPlayerOnLoadSound.nativeElement.play();
+    if (this.AUDIO_SOUNDS) {
+      this.audioPlayerOnLoadSound.nativeElement.play();
+    }
     this.initSocket();
     this.loading = true;
     this.route.queryParams
@@ -190,15 +193,13 @@ export class CodeNameComponent implements OnInit {
       return;
     }
     block.clicked = true;
-    this.audioLockSound.nativeElement.play();
+    if (this.AUDIO_SOUNDS) {
+      this.audioLockSound.nativeElement.play();
+    }
     this.isSpyMasterViewOn() === false ? block.currentColor = block.color : undefined;
     this.updateColorLeft();
     this.checkWinner();
-    if (this.gameResultColor === CodeBlockColor.BLACK) {
-      this.audioGameOverSound.nativeElement.play();
-    } else if (this.gameResultColor === CodeBlockColor.RED || this.gameResultColor === CodeBlockColor.BLACK) {
-      this.audioGameWinnerSound.nativeElement.play();
-    }
+    this.playSound();
     // Save the board state
     this.saveBoard();
   }
@@ -209,7 +210,22 @@ export class CodeNameComponent implements OnInit {
   public navigateToHome(): void {
     this.router.navigate([ROUTES.HOME]);
   }
+  private playSound() {
+    if (!this.AUDIO_SOUNDS) {
+      return;
+    }
+    switch (this.gameResultColor) {
+      case CodeBlockColor.RED:
+      case CodeBlockColor.BLUE:
+        this.audioGameWinnerSound.nativeElement.play();
+        break;
 
+      case CodeBlockColor.BLACK:
+        this.audioGameOverSound.nativeElement.play();
+        break;
+      default:
+    }
+  }
   private isBlockClickDisabled(block: CodeBlock) {
     return this.gameResultColor !== CodeBlockColor.NONE ||
       this.isSpyMasterViewOn() ||
