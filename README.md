@@ -1,5 +1,5 @@
 # Demo
-https://code-name-game.herokuapp.com/
+https://fun-board-games.herokuapp.com/
 
 # Code Name Fun
 
