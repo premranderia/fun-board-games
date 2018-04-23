@@ -29,7 +29,7 @@ export class CodeNameComponent implements OnInit {
   MIN_COLOR = 8;
   NO_OF_ROWS = 5;
   NO_OF_COLUMNS = 5;
-  AUDIO_SOUNDS = false;
+  AUDIO_SOUNDS = true;
 
   public rows: Array<any>;
   public columns: Array<any>;
@@ -131,6 +131,7 @@ export class CodeNameComponent implements OnInit {
     this.socketService.onEvent(Event.DISCONNECT)
       .subscribe(() => {
       });
+    this.socketService.getActiveClients();
   }
 
   /**
@@ -201,6 +202,7 @@ export class CodeNameComponent implements OnInit {
     this.playSound();
     // Save the board state
     this.saveBoard();
+    this.gamOverAction();
   }
 
   /**
@@ -209,6 +211,14 @@ export class CodeNameComponent implements OnInit {
   public navigateToHome(): void {
     this.router.navigate([ROUTES.HOME]);
   }
+
+  // If game is over then, route to home page for spymasters
+  private gamOverAction() {
+    if (this.gameResultColor !== CodeBlockColor.NONE && this.isSpyMasterViewOn()) {
+      this.navigateToHome();
+    }
+  }
+
   private playSound() {
     if (!this.AUDIO_SOUNDS) {
       return;

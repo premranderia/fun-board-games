@@ -11,19 +11,24 @@ const SERVER_URL = `${environment.serverUrl}`;
 @Injectable()
 export class SocketService {
   private socket;
+  private room = 'message';
 
   public initSocket(): void {
     this.socket = socketIo(SERVER_URL);
   }
 
   public send({ message }: any): void {
-    this.socket.emit('message', message);
+    this.socket.emit(this.room, message);
   }
 
   public onMessage(): Observable<any> {
     return new Observable<any>(observer => {
-      this.socket.on('message', (data: any) => observer.next(data));
+      this.socket.on(this.room, (data: any) => observer.next(data));
     });
+  }
+
+  public getActiveClients() {
+    // return this.socket.clients(this.room);
   }
 
   public onEvent(event: Event): Observable<any> {
