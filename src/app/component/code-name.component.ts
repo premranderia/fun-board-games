@@ -30,6 +30,7 @@ export class CodeNameComponent implements OnInit {
   NO_OF_ROWS = 5;
   NO_OF_COLUMNS = 5;
   AUDIO_SOUNDS = true;
+  COUNT_DOWN_LIMIT = 120;
 
   public rows: Array<any>;
   public columns: Array<any>;
@@ -45,11 +46,14 @@ export class CodeNameComponent implements OnInit {
   public CodeBlockColor = CodeBlockColor;
   public showAllCards = false;
   public spyViewCount = 0;
+  public countDownLimit = 0;
+  public homeCountDown: number;
 
   private gameView: GameView;
   private totalBlocks = this.NO_OF_ROWS * this.NO_OF_COLUMNS;
   private ioConnection: any;
   private messages: Array<any>;
+  private timeOutInterval: any;
 
   constructor(private route: ActivatedRoute, private codeBlockService: CodeBlockService,
     private router: Router,
@@ -93,7 +97,7 @@ export class CodeNameComponent implements OnInit {
     this.gameId = id || _.random(1, 10000);
     this.shuffleColors();
     this.shuffleWords();
-
+    this.resetCountDown(this.COUNT_DOWN_LIMIT);
     // This means we are reseting the board
     if (_.isUndefined(blocks) || _.isEmpty(blocks)) {
       this.codeBlocks.length = 0;
@@ -102,7 +106,9 @@ export class CodeNameComponent implements OnInit {
     }
     this.updateColorLeft();
     this.checkWinner();
+    this.postGameOverAction();
     this.loading = false;
+    this.homeCountDown = this.COUNT_DOWN_LIMIT / 2;
   }
 
   /**
@@ -120,6 +126,7 @@ export class CodeNameComponent implements OnInit {
           }
           if (message.gameResult) {
             this.gameResultColor = message.gameResult;
+            this.postGameOverAction();
           }
         }
       });
@@ -199,10 +206,11 @@ export class CodeNameComponent implements OnInit {
     this.isSpyMasterViewOn() === false ? block.currentColor = block.color : undefined;
     this.updateColorLeft();
     this.checkWinner();
+    this.postGameOverAction();
     this.playSound();
+    this.resetCountDown(this.COUNT_DOWN_LIMIT);
     // Save the board state
     this.saveBoard();
-    this.gamOverAction();
   }
 
   /**
@@ -211,11 +219,32 @@ export class CodeNameComponent implements OnInit {
   public navigateToHome(): void {
     this.router.navigate([ROUTES.HOME]);
   }
-
+  private resetCountDown(limit) {
+    if (!_.isUndefined(this.timeOutInterval)) {
+      clearInterval(this.timeOutInterval);
+    }
+    this.countDownLimit = limit;
+    // const seconds = 50;
+    this.timeOutInterval = setInterval(() => {
+      this.countDownLimit--;
+      if (this.countDownLimit <= 0) {
+        clearInterval(this.timeOutInterval);
+      }
+    }, 1000);
+  }
   // If game is over then, route to home page for spymasters
-  private gamOverAction() {
-    if (this.gameResultColor !== CodeBlockColor.NONE && this.isSpyMasterViewOn()) {
-      this.navigateToHome();
+  private postGameOverAction() {
+    if (this.gameResultColor !== CodeBlockColor.NONE) {
+      clearInterval(this.timeOutInterval);
+      if (this.isSpyMasterViewOn()) {
+        const interval = setInterval(() => {
+          this.homeCountDown--;
+          if (this.homeCountDown <= 0) {
+            clearInterval(interval);
+            this.navigateToHome();
+          }
+        }, 1000);
+      }
     }
   }
 
@@ -256,7 +285,6 @@ export class CodeNameComponent implements OnInit {
         }
       }
     });
-    // console.log()
   }
 
   /**
