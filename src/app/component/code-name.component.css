@@ -148,6 +148,10 @@ button.id-text.mat-mini-fab.mat-accent {
   display: flex;
   justify-content: center;
 }
+.timer {
+  right: 0;
+  position: absolute;
+}
 
 /* ipad in landscape */
 @media only screen 

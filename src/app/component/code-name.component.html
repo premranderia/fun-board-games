@@ -15,9 +15,19 @@
         </button>
         <span class="result GREEN" *ngIf="gameResultColor !== CodeBlockColor.BLACK && gameResultColor !== CodeBlockColor.NONE">
           Congrats {{ gameResultColor }} team !!!
+
+          <span *ngIf="gameResultColor !== CodeBlockColor.NONE && isSpyMasterViewOn()">
+            Redirecting to Home {{ this.homeCountDown }}
+          </span>
         </span>
         <span class="result RED" *ngIf="gameResultColor === CodeBlockColor.BLACK">
           Game Over !!!
+          <span *ngIf="gameResultColor !== CodeBlockColor.NONE && isSpyMasterViewOn()">
+            Redirecting to Home {{ this.homeCountDown }}
+          </span>
+        </span>
+        <span class="timer" *ngIf="gameResultColor === CodeBlockColor.NONE">
+          <button mat-mini-fab color="{{ this.countDownLimit <= 30 ? (this.countDownLimit % 2 === 0 ? 'warn': 'basic'): 'basic'}}">{{ this.countDownLimit }}</button>
         </span>
       </div>
       <div class="col-1 show-cards">
