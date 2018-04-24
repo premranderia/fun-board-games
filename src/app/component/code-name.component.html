@@ -17,13 +17,13 @@
           Congrats {{ gameResultColor }} team !!!
 
           <span *ngIf="gameResultColor !== CodeBlockColor.NONE && isSpyMasterViewOn()">
-            Redirecting to Home {{ this.homeCountDown }} ...
+            Redirecting to Home {{ this.homeCountDown }}
           </span>
         </span>
         <span class="result RED" *ngIf="gameResultColor === CodeBlockColor.BLACK">
           Game Over !!!
           <span *ngIf="gameResultColor !== CodeBlockColor.NONE && isSpyMasterViewOn()">
-            Redirecting to Home {{ this.homeCountDown }} ...
+            Redirecting to Home {{ this.homeCountDown }}
           </span>
         </span>
         <span class="timer" *ngIf="gameResultColor === CodeBlockColor.NONE">
