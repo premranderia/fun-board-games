@@ -81,7 +81,6 @@ export class CodeNameComponent implements OnInit {
         if (params.spy && !!params.spy === true) {
           this.gameView = GameView.SPYMASTER;
         }
-        console.log(params, params.gujVersion && !!params.gujVersion === true);
         if (params.gujVersion && !!params.gujVersion === true) {
           this.enableGujjuView = true;
         }
@@ -345,7 +344,6 @@ export class CodeNameComponent implements OnInit {
   private shuffleWords(): void {
     let wordPool: string[];
     wordPool = this.enableGujjuView ? DATA_GUJJU : DATA;
-    console.log(wordPool);
     this.words = _.sampleSize(wordPool, this.totalBlocks);
   }
 
