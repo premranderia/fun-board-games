@@ -16,13 +16,11 @@ import { ROUTES } from '../routes/route.constant';
 export class HomeComponent implements OnInit {
   public gameId: number;
   public spyMode: boolean;
-  public gujVersion: boolean;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
     this.spyMode = true;
-    this.gujVersion = false;
   }
 
   public enterGameWithId(): void {
@@ -32,9 +30,6 @@ export class HomeComponent implements OnInit {
     }
     if (this.spyMode) {
       queryParams.spy = this.spyMode;
-    }
-    if (this.gujVersion) {
-      queryParams.gujVersion = this.gujVersion;
     }
     this.navigate(queryParams);
   }
@@ -48,5 +43,4 @@ export class HomeComponent implements OnInit {
 export interface QueryParams {
   id?: number;
   spy?: boolean;
-  gujVersion?: boolean;
 }
