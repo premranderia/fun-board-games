@@ -5,10 +5,7 @@ import { CodeNameComponent } from './component/code-name.component';
 import { HomeRoutesComponent } from './routes/home-routes.component';
 
 const routes: Routes = [
-  { path: ROUTES.HOME, 
-    pathMatch: 'full', 
-    component: HomeRoutesComponent 
-  },
+  { path: ROUTES.HOME, pathMatch: 'full', component: HomeRoutesComponent },
   {
     path: ROUTES.GAME,
     component: CodeNameComponent,
@@ -17,10 +14,7 @@ const routes: Routes = [
     path: ROUTES.CODE_NAME,
     component: CodeNameComponent,
   },
-  { path: 
-    ROUTES.ANY, 
-    redirectTo: ''
-  }
+  { path: ROUTES.ANY, redirectTo: '' }
 ];
 
 @NgModule({

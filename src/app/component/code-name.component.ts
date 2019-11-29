@@ -6,7 +6,6 @@ import { CodeBlockColor, GameView } from './code-block.constant';
 import { NgForOf } from '@angular/common';
 import * as _ from 'lodash';
 import { DATA } from '../../assets/game-sample-2';
-import { DATA_GUJJU } from '../../assets/game-sample-3';
 import { CodeBlockService } from './internal/code-block.service';
 import 'rxjs/add/operator/map';
 import { NgIf } from '@angular/common';
@@ -65,7 +64,6 @@ export class CodeNameComponent implements OnInit {
     this.colors = [];
     this.words = [];
     this.gameView = GameView.PLAYER;
-    this.enableGujjuView = false;
   }
 
   async ngOnInit() {
@@ -81,9 +79,6 @@ export class CodeNameComponent implements OnInit {
         if (params.spy && !!params.spy === true) {
           this.gameView = GameView.SPYMASTER;
         }
-        if (params.gujVersion && !!params.gujVersion === true) {
-          this.enableGujjuView = true;
-        }
         if (id) {
           const blocksByGameID = await this.fetchCodeBlockByGameId(id);
           if (blocksByGameID && !_.isEmpty(blocksByGameID)) {
@@ -95,7 +90,7 @@ export class CodeNameComponent implements OnInit {
       });
   }
 
-  public initGame({ id, blocks, enableGujjuView }: GameData): void {
+  public initGame({ id, blocks }: GameData): void {
     this.gameResultColor = CodeBlockColor.NONE;
     this.maxColorLeft = this.MAX_COLOR;
     this.minColorLeft = this.MIN_COLOR;
@@ -115,7 +110,6 @@ export class CodeNameComponent implements OnInit {
     this.postGameOverAction();
     this.loading = false;
     this.homeCountDown = this.COUNT_DOWN_LIMIT / 2;
-    this.enableGujjuView = enableGujjuView;
   }
 
   /**
@@ -182,11 +176,6 @@ export class CodeNameComponent implements OnInit {
       this.gameView = this.gameView === GameView.SPYMASTER ? GameView.PLAYER : GameView.SPYMASTER;
       this.saveBoard();
     }
-  }
-
-  public toggleGujjuVersion(): void {
-    this.enableGujjuView = !this.enableGujjuView;
-    this.initGame({ enableGujjuView: this.enableGujjuView });
   }
 
   /**
@@ -342,9 +331,7 @@ export class CodeNameComponent implements OnInit {
    * Shuffle the words
    */
   private shuffleWords(): void {
-    let wordPool: string[];
-    wordPool = this.enableGujjuView ? DATA_GUJJU : DATA;
-    this.words = _.sampleSize(wordPool, this.totalBlocks);
+    this.words = _.sampleSize(DATA, this.totalBlocks);
   }
 
   /**
@@ -401,5 +388,4 @@ export interface GameData {
   blocks?: Array<CodeBlock>;
   spyViewCount?: number;
   gameResult?: CodeBlockColor;
-  enableGujjuView?: boolean;
 }
