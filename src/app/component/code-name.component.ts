@@ -49,13 +49,13 @@ export class CodeNameComponent implements OnInit {
   public spyViewCount = 0;
   public countDownLimit = 0;
   public homeCountDown: number;
+  public enableGujjuView: boolean;
 
   private gameView: GameView;
   private totalBlocks = this.NO_OF_ROWS * this.NO_OF_COLUMNS;
   private ioConnection: any;
   private messages: Array<any>;
   private timeOutInterval: any;
-  private enableGujjuView: boolean;
 
   constructor(private route: ActivatedRoute, private codeBlockService: CodeBlockService,
     private router: Router,
