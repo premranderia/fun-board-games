@@ -27,7 +27,7 @@ export const DATA = [
   'Bra',
   'Dame',
   'Chick',
-  ' Bitch',
+  'Bitch',
   'Score',
   'Sheep',
   'Strap',
@@ -97,7 +97,7 @@ export const DATA = [
   'Crap',
   'Bush',
   'Box',
-  ' Mushroom',
+  'Mushroom',
   'Shame',
   'Couple',
   'Sweat',
@@ -391,4 +391,3 @@ export const DATA = [
   'Down',
   'Clap',
 ];
-

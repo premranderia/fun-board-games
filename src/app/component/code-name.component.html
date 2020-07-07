@@ -8,7 +8,7 @@
         <span class="RED card-left">{{ maxColorLeft }}</span>
         <span class="BLUE card-left">{{ minColorLeft }}</span>
       </div>
-      <div class="col-6 message">
+      <div class="col-5 message">
         <button mat-mini-fab color="accent" class="id-text" *ngIf="gameResultColor === CodeBlockColor.NONE">
           <span>ID: {{ gameId }}
           </span>
@@ -40,7 +40,10 @@
           <span *ngIf="spyViewCount > 0">{{ spyViewCount }}</span> Spy</mat-slide-toggle>
       </div>
       <div class="col-1">
-        <button mat-raised-button (click)="initGame({})" color="warn" class="reset">Reset</button>
+        <mat-slide-toggle class="slide-toggle" [checked]="enableGujjuView" (change)="toggleGujjuVersion()">Gujju</mat-slide-toggle>
+      </div>
+      <div class="col-1">
+        <button mat-raised-button (click)="initGame({ enableGujjuView: enableGujjuView })" color="warn" class="reset">Reset</button>
       </div>
     </div>
   </div>
