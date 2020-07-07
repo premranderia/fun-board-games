@@ -84,7 +84,7 @@ export class CodeNameComponent implements OnInit {
         if (id) {
           const blocksByGameID = await this.fetchCodeBlockByGameId(id);
           if (params.gujVersion && !!params.gujVersion === true) {
-            this.enableGujjuView = false;
+            this.enableGujjuView = true;
           }
           if (blocksByGameID && !_.isEmpty(blocksByGameID)) {
             this.codeBlocks = blocksByGameID;
@@ -185,7 +185,7 @@ export class CodeNameComponent implements OnInit {
   }
 
   public toggleGujjuVersion(): void {
-    this.enableGujjuView = false;
+    this.enableGujjuView = !this.enableGujjuView;
     this.initGame({ enableGujjuView: this.enableGujjuView });
   }
 
