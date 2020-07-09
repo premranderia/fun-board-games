@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row header">
       <div class="col-2">
-        <span class="label" (click)="navigateToHome()"> Code Names </span>
+        <span class="label" (click)="navigateToHome()"> LINKEE </span>
       </div>
       <div class="col-1 cards-count">
         <span class="RED card-left">{{ maxColorLeft }}</span>
@@ -13,41 +13,30 @@
           mat-mini-fab
           color="accent"
           class="id-text"
-          *ngIf="gameResultColor === CodeBlockColor.NONE"
+          *ngIf="gameResultColor === CodeBlockColor"
         >
           <span>ID: {{ gameId }} </span>
         </button>
         <span
           class="result GREEN"
           *ngIf="
-            gameResultColor !== CodeBlockColor.BLACK &&
-            gameResultColor !== CodeBlockColor.NONE
+            gameResultColor !== CodeBlockColor &&
+            gameResultColor !== CodeBlockColor
           "
         >
           Congrats {{ gameResultColor }} team !!!
 
-          <span
-            *ngIf="
-              gameResultColor !== CodeBlockColor.NONE && isSpyMasterViewOn()
-            "
-          >
+          <span *ngIf="gameResultColor !== CodeBlockColor">
             Redirecting to Home {{ this.homeCountDown }}
           </span>
         </span>
-        <span
-          class="result RED"
-          *ngIf="gameResultColor === CodeBlockColor.BLACK"
-        >
+        <span class="result RED" *ngIf="gameResultColor === CodeBlockColor">
           Game Over !!!
-          <span
-            *ngIf="
-              gameResultColor !== CodeBlockColor.NONE && isSpyMasterViewOn()
-            "
-          >
+          <span *ngIf="gameResultColor !== CodeBlockColor">
             Redirecting to Home {{ this.homeCountDown }}
           </span>
         </span>
-        <span class="timer" *ngIf="gameResultColor === CodeBlockColor.NONE">
+        <span class="timer" *ngIf="gameResultColor === CodeBlockColor">
           <button
             mat-mini-fab
             color="{{
@@ -64,7 +53,7 @@
       </div>
       <div class="col-1 show-cards">
         <mat-slide-toggle
-          *ngIf="isSpyMasterViewOn()"
+          *ngIf=""
           class="slide-toggle-board"
           (change)="toggleShowAllCards()"
         >
@@ -74,7 +63,7 @@
       <div class="col-1">
         <mat-slide-toggle
           class="slide-toggle"
-          [checked]="isSpyMasterViewOn()"
+          [checked]=""
           (change)="toggleGameView()"
         >
           <span *ngIf="spyViewCount > 0">{{ spyViewCount }}</span>
@@ -116,7 +105,7 @@
       </div>
     </div>
   </div>
-  <audio #audioPlayerOnLoadSound>
+  <!-- <audio #audioPlayerOnLoadSound>
     <source src="../../assets/kbc.mp3" type="audio/mp3" />
   </audio>
   <audio #audioLockSound>
@@ -127,5 +116,5 @@
   </audio>
   <audio #audioGameWinnerSound>
     <source src="../../assets/game-winner.mp3" type="audio/mp3" />
-  </audio>
+  </audio> -->
 </div>

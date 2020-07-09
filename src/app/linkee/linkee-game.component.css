@@ -1,0 +1,362 @@
+.linkee-game {
+  font-family: sans-serif;
+  /* font-size: 22px; */
+  user-select: none;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  background-color: #050000;
+  background-color: #a66a10;
+  /* background-color: #005e61; */
+  background-image: url(../../assets/wood-pattern.png);
+}
+.content-box {
+  display: flex;
+  flex-wrap: wrap;
+  height: 85%;
+  margin-top: 10px;
+}
+
+.block {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 1 calc(20% - 12px);
+  flex: 0 1 calc(20% - 12px);
+  margin: 5px;
+  height: 200px;
+  cursor: pointer;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 30px;
+  /* border: 1px dotted #ccc; */
+  border-radius: 20px;
+  color: #040505;
+  height: calc(100% / 5);
+  background: rgba(255,255,255,0.7);
+}
+.block.WHITE:hover, .block.WHITE:focus, .block.WHITE:active {
+  opacity: 0.5;
+}
+
+.block.YELLOW {
+  background: #E9EC05;
+}
+
+.block.BLUE, .BLUE {
+  background: #0572EC;
+}
+
+.block.GREEN, .GREEN {
+  background: #05EC0C;
+}
+
+.block.BLACK {
+  background: #7D7D73;
+}
+
+.block.RED, .RED {
+  background: #EC2E05;
+}
+
+.warning {
+  background: #dc3545;
+}
+.card-left {
+  padding: 0 15px;
+  /* font-size: 30px; */
+}
+.reset {
+  border: 0;
+  color: #fff;
+  background: #EC2E05;
+  padding: 0;
+  padding: 0 10px;
+}
+
+.header {
+  background-color: #2c2c2c;
+  color: #fff;
+  height: 50px;
+  font-size: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px;
+  background: rgba(1, 1, 1, 0.7);
+}
+
+input {
+  border: 1px solid;
+  border-radius: 2px;
+  font-family: Arial;
+  height: 30px;
+  min-width: 80px;
+  padding: 0 15px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.btn {
+  cursor: pointer;
+}
+.blue {
+  color: #004085;
+  background-color: #cce5ff;
+  border-color: #b8daff;
+}
+.block.clicked {
+  text-decoration: line-through;
+  text-decoration-style: dotted;
+}
+.label {
+  position: relative;
+  top: 3px;
+}
+.game-number {
+  min-width: 40px;
+  width: 40px;
+}
+.slide-toggle {
+  margin: 10px;
+  float:right;
+}
+.slide-toggle-board {
+  margin: 10px;
+}
+.block-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.label {
+  cursor: pointer;
+}
+.logo {
+  cursor: pointer;
+  height: 15px;
+}
+button.id-text.mat-mini-fab.mat-accent {
+  width: 100px;
+  /* font-size: 17px; */
+  font-weight: bold;
+}
+.cards-count {
+  display: flex;
+}
+.message {
+  display: flex;
+  justify-content: center;
+}
+.timer {
+  right: 0;
+  position: absolute;
+}
+
+/* ipad in landscape */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) { 
+  .block {
+    height: 16%;
+    font-size: 12px;
+    word-break: break-all;
+  }
+  .header {
+    font-size: 12px;
+  }
+  .reset {
+    font-size: 12px;
+    min-width: 45px;
+  }
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape)
+and (-webkit-min-device-pixel-ratio: 2) { 
+  .block {
+    height: 16%;
+    font-size: 22px;
+    word-break: break-all;
+  }
+  .header {
+    font-size: 12px;
+  }
+
+  .show-cards {
+    display: none;
+  }
+}
+
+/* iphone 6,7,8 */
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) 
+and (orientation : landscape) { 
+  .block {
+    height: 16%;
+    font-size: 19px;
+    max-width: 120px;
+    word-break: break-all;
+  }
+  .header {
+    font-size: 12px;
+  }
+  .reset {
+    font-size: 12px;
+    min-width: 45px;
+  }
+
+  .show-cards {
+    display: none;
+  }
+}
+
+/* iphone 6,7,8 plus */
+@media only screen 
+and (min-device-width : 414px) 
+and (max-device-width : 736px) 
+and (orientation : landscape) {
+  .block {
+    height: 16%;
+    font-size: 19px;
+    max-width: 120px;
+    word-break: break-all;
+  }
+  .header {
+    font-size: 12px;
+  }
+  .reset {
+    font-size: 12px;
+    min-width: 45px;
+  }
+
+
+  .show-cards {
+    display: none;
+  }
+}
+
+
+/* iphone X */
+@media only screen 
+and (min-device-width : 737px) 
+and (max-device-width : 812px) 
+and (-webkit-device-pixel-ratio : 3)
+and (orientation : landscape) {
+  .header {
+    font-size: 12px;
+  }
+  .reset {
+    font-size: 12px;
+    min-width: 45px;
+  }
+
+
+  .show-cards {
+    display: none;
+  }
+}
+
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait)
+and (-webkit-min-device-pixel-ratio: 2) { 
+ .block {
+    flex: 0 1 18%;
+    font-size: 16px;
+  }
+  .header {
+    font-size: 16px;
+    padding: 0;
+  }
+}
+
+/* iphone 6,7,8 */
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) 
+and (orientation : portrait) { 
+ .block {
+    flex: 0 1 100%
+  }
+
+  .code-name {
+    overflow: scroll;
+  }
+  .header {
+    font-size: 16px;
+    padding: 0;
+  }
+  .cards-count {
+    display: block;
+  }
+  .reset {
+    display: none;
+  }
+  .show-cards {
+    display: none;
+  }
+}
+
+/* iphone 6,7,8 plus */
+@media only screen 
+and (min-device-width : 414px) 
+and (max-device-width : 736px) 
+and (orientation : portrait) {
+  .block {
+    flex: 0 1 100%
+  }
+
+  .code-name {
+    overflow: scroll;
+  }
+
+  .header {
+    font-size: 16px;
+    padding: 0;
+  }
+  .cards-count {
+    display: block;
+  }
+  .reset {
+    display: none;
+  }
+
+
+  .show-cards {
+    display: none;
+  }
+}
+/* iphone X */
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 812px) 
+and (-webkit-device-pixel-ratio : 3)
+and (orientation : portrait) { 
+  .block {
+    flex: 0 1 100%
+  }
+  .code-name {
+    overflow: scroll;
+  }
+  .header {
+    font-size: 16px;
+    padding: 0;
+  }
+  .cards-count {
+    display: block;
+  }
+  .reset {
+    display: none;
+  }
+
+  .show-cards {
+    display: none;
+  }
+}

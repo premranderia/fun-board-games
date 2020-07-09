@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  serverUrl: 'https://board-games-node-server.herokuapp.com'
+  serverUrl: 'http://localhost:3000'
 };

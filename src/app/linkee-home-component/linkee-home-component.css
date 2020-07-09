@@ -1,0 +1,366 @@
+
+.linkee-home-component {
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  -webkit-box-flex-direction: row;
+  -moz-box-flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  background-color: #050000;
+  height: 100%;
+  /* background-color: #005e61; */
+  /* background-image: url(../../assets/wood-pattern.png); */
+}
+.content {
+  margin: auto;
+  /* width: 500px; */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  /* padding: 20px 50px; */
+  padding: 50px 200px;
+  background-image: url(../../assets/wood-pattern.png);
+  /* background-color: #3d0000; */
+  /* background-color: #050000; */
+  /* background-color: #a66a10; */
+  /* background-color: #005e61; */
+}
+.title {
+  font-size: 30px;
+  text-align: center;
+  color: #4d4d4d;
+  margin: 20px;
+}
+.rules {
+  font-size: 24px;
+}
+.row {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.btn {
+  border: 1px solid;
+  border-radius: 2px;
+  font-family: Arial;
+  height: 30px;
+  padding: 0 15px;
+  font-size: 12px;
+  font-weight: 700;    
+  border: 0;
+  color: #fff;
+  height: 50px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.left, .right {
+  display: flex;
+}
+.left {
+  margin: 30px 30px 0 0;
+}
+.img-logo {
+  height: 150px;
+  width: 790px;
+}
+.child {
+  display: flex;
+  flex-direction: row;
+  width: 230px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.right {
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+div.right > div.child {
+  margin-bottom: 30px;
+} 
+.input-game {
+  border: 1px dotted #ef9a9a;
+  width: 80px;
+  margin-bottom: 10px;
+  color: #4d4d4d;
+  margin-right: 10px;
+  color: #ef9a9a;
+  height: 30px;
+  margin-top: 10px;
+}
+.existing-game {
+  background: #dc3545;
+}
+.new-game {
+  background: #28a745;
+  float: right;
+}
+.logo {
+  width: 500px;
+  height: 800px;
+}
+.label {
+  color: #ef9a9a;
+  font-weight: bold;
+}
+.spy-info, .warning {
+  color: #fff;
+  font-size: 14px;
+}
+.mat-fab.mat-accent[disabled], .mat-fab.mat-primary[disabled], .mat-fab.mat-warn[disabled], .mat-fab[disabled][disabled], .mat-mini-fab.mat-accent[disabled], .mat-mini-fab.mat-primary[disabled], .mat-mini-fab.mat-warn[disabled], .mat-mini-fab[disabled][disabled], .mat-raised-button.mat-accent[disabled], .mat-raised-button.mat-primary[disabled], .mat-raised-button.mat-warn[disabled], .mat-raised-button[disabled][disabled] {
+  background: #dc3545;
+  color: #fff;
+  opacity: 0.5;
+}
+.row-content {
+  justify-content: center;
+  align-items: center;
+}
+.warning {
+  font-size: 10px;
+  margin-top: 10px;
+}
+
+/* ipad in landscape */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) { 
+  .logo {
+    width: 600px;
+    height: 800px;
+  }
+  .content {
+    padding: 0;
+    width: 100%;
+  }
+  .img-logo {
+    width: 100%;
+    height: 100%;
+  }
+  .video-iframe {
+    width: 300px;
+    height: 245px;
+  }
+}
+
+/* ipad PRO in landscape */
+@media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 1.5) {
+  .logo {
+    width: 960px;
+    height: 1000px;
+  }
+  .img-logo {
+    width: 100%;
+    height: 100%;
+  }
+  .content {
+    padding: 0;
+    width: 100%;
+  }
+  .video-iframe {
+    width: 300px;
+    height: 245px;
+  }
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape)
+and (-webkit-min-device-pixel-ratio: 2) { 
+  .logo {
+    width: 600px;
+    height: 800px;
+  }
+  .content {
+    padding: 0;
+    width: 100%;
+  }
+  .img-logo {
+    width: 100%;
+    height: 100%;
+  }
+  .video-iframe {
+    width: 300px;
+    height: 245px;
+  }
+}
+
+/* iphone 6,7,8 */
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) 
+and (orientation : landscape) { 
+  .logo {
+    width: 250px;
+    height: 345px;
+  }
+  .content {
+    padding: 0;
+    width: 100%;
+  }
+  .img-logo {
+    width: 100%;
+    height: 100%;
+  }
+  .video-iframe {
+    width: 300px;
+    height: 245px;
+  }
+}
+
+/* iphone 6,7,8 plus */
+@media only screen 
+and (min-device-width : 414px) 
+and (max-device-width : 736px) 
+and (orientation : landscape) {
+  .logo {
+    width: 250px;
+    height: 345px;
+  }
+  .content {
+    padding: 0;
+  }
+  .img-logo {
+    width: 100%;
+    height: 100%;
+  }
+  .video-iframe {
+    width: 300px;
+    height: 245px;
+  }
+}
+/* iphone X */
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 812px) 
+and (-webkit-device-pixel-ratio : 3)
+and (orientation : landscape) { 
+  .logo {
+    width: 250px;
+    height: 354px;
+  }
+  .content {
+    padding: 0;
+    width: 100%;
+  }
+  .img-logo {
+    width: 100%;
+    height: 100%;
+  }
+  .video-iframe {
+    width: 300px;
+    height: 245px;
+  }
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait)
+and (-webkit-min-device-pixel-ratio: 2) { 
+  .logo {
+    width: 600px;
+    height: 800px;
+  }
+  .content {
+    width: 100%;
+    padding: 0;
+  }
+  .img-logo {
+    width: 100%;
+    height: 100%;
+  }
+  .video-iframe {
+    width: 200px;
+    height: 145px;
+  }
+  .left {
+    margin: 30px;
+  }
+}
+
+/* iphone 6,7,8 */
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) 
+and (orientation : portrait) { 
+  .logo {
+    width: 250px;
+    height: 345px;
+  }
+  .content {
+    padding: 0;
+    width: 100%;
+  }
+  .img-logo {
+    width: 100%;
+    height: 100%;
+  }
+  .video-iframe {
+    width: 200px;
+    height: 145px;
+  }
+  .left {
+    margin: 30px;
+  }
+}
+
+/* iphone 6,7,8 plus */
+@media only screen 
+and (min-device-width : 414px) 
+and (max-device-width : 736px) 
+and (orientation : portrait) {
+  .logo {
+    width: 250px;
+    height: 345px;
+  }
+  .content {
+    padding: 0;
+    width: 100%;
+  }
+  .img-logo {
+    width: 100%;
+    height: 100%;
+  }
+  .video-iframe {
+    width: 200px;
+    height: 145px;
+  }
+   .left {
+    margin: 30px;
+  }
+}
+/* iphone X */
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 812px) 
+and (-webkit-device-pixel-ratio : 3)
+and (orientation : portrait) { 
+  .logo {
+    width: 250px;
+    height: 354px;
+  }
+  .content {
+    padding: 0;
+    width: 100%;
+  }
+  .img-logo {
+    width: 100%;
+    height: 100%;
+  }
+  .video-iframe {
+    width: 200px;
+    height: 145px;
+  }
+  .left {
+    margin: 30px;
+  }
+}
