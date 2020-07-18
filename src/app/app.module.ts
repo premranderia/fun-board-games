@@ -11,14 +11,14 @@ import { LinkeeHomeRoutesComponent } from './routes/linkee-home-routes.component
 import { CodeNameRoutesComponent } from './routes/code-name-routes.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  MatSlideToggleModule,
-  MatButtonModule,
-  MatInputModule,
-} from '@angular/material';
 import { LinkeeHomeComponent } from './linkee-home-component/linkee-home-component';
 import { LinkeeGameRouteComponent } from './routes/linkee-game-routes.component';
 import { LinkeeGameComponent } from './linkee/linkee-game.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   imports: [
@@ -30,6 +30,8 @@ import { LinkeeGameComponent } from './linkee/linkee-game.component';
     MatSlideToggleModule,
     MatButtonModule,
     MatInputModule,
+    MatIconModule,
+    MatChipsModule
   ],
   declarations: [
     AppComponent,

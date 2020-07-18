@@ -1,4 +1,4 @@
-<div class="code-name">
+<div class="linkee-game">
   <div class="container-fluid">
     <div class="row header">
       <div class="col-2">
@@ -66,16 +66,8 @@
           [checked]=""
           (change)="toggleGameView()"
         >
-          <span *ngIf="spyViewCount > 0">{{ spyViewCount }}</span>
+          <span *ngIf="false">{{ spyViewCount }}</span>
           Spy</mat-slide-toggle
-        >
-      </div>
-      <div class="col-1">
-        <mat-slide-toggle
-          class="slide-toggle"
-          [checked]="enableGujjuView"
-          (change)="toggleGujjuVersion()"
-          >Gujju</mat-slide-toggle
         >
       </div>
       <div class="col-1">
@@ -90,31 +82,37 @@
       </div>
     </div>
   </div>
+
   <div class="content-box">
-    <div
-      class="block"
-      [ngClass]="getCodeBlockClass(block)"
-      *ngFor="let block of codeBlocks"
-      (click)="onBlockClick(block)"
-    >
+    <div class="question-card">
       <div
-        class="block-content"
-        *ngIf="!loading && (!block.clicked || showAllCards)"
+        class="questions result"
+        *ngFor="let question of questions; let i = index"
       >
-        {{ block.word }}
+        <div *ngIf="i <= 3">
+          <span>{{ i + 1 }}.</span><span>{{ question }}</span>
+        </div>
+        <span class="clue" *ngIf="i == 4">{{ question }}</span>
+        <span class="answer" *ngIf="i == 5">{{ question }}</span>
       </div>
     </div>
   </div>
-  <!-- <audio #audioPlayerOnLoadSound>
-    <source src="../../assets/kbc.mp3" type="audio/mp3" />
-  </audio>
-  <audio #audioLockSound>
-    <source src="../../assets/lock-tune.mp3" type="audio/mp3" />
-  </audio>
-  <audio #audioGameOverSound>
-    <source src="../../assets/game-over.mp3" type="audio/mp3" />
-  </audio>
-  <audio #audioGameWinnerSound>
-    <source src="../../assets/game-winner.mp3" type="audio/mp3" />
-  </audio> -->
+
+  <div class="footer">
+    <div class="block players" *ngFor="let player of players">
+      <div class="block-content">
+        <div class="name">
+          {{ player.name }}
+        </div>
+        <div class="game-score">
+          <span
+            class="result"
+            *ngFor="let res of _.keys(player.result); let i = index"
+          >
+            {{ res }} <sup>{{ player.result[res] }}</sup></span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
