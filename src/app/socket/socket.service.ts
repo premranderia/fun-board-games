@@ -22,7 +22,7 @@ export class SocketService {
   }
 
   public onMessage(): Observable<any> {
-    return new Observable<any>(observer => {
+    return new Observable<any>((observer) => {
       this.socket.on(this.room, (data: any) => observer.next(data));
     });
   }
@@ -32,7 +32,7 @@ export class SocketService {
   }
 
   public onEvent(event: Event): Observable<any> {
-    return new Observable<Event>(observer => {
+    return new Observable<Event>((observer) => {
       this.socket.on(event, () => observer.next());
     });
   }

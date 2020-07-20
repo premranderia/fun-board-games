@@ -5,6 +5,6 @@ import { Component, Input, OnInit } from '@angular/core';
   template: '<code-name></code-name>',
   styleUrls: [],
 })
-export class CodeNameRoutesComponent {
+export class LinkeeGameRouteComponent {
   constructor() {}
 }

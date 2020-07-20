@@ -10,15 +10,14 @@ import { ROUTES } from '../routes/route.constant';
 @Component({
   selector: 'home-component',
   templateUrl: './home-component.html',
-  styleUrls: ['./home-component.css', '../app.css']
+  styleUrls: ['./home-component.css', '../app.css'],
 })
-
 export class HomeComponent implements OnInit {
   public gameId: number;
   public spyMode: boolean;
   public gujVersion: boolean;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.spyMode = true;
@@ -40,7 +39,7 @@ export class HomeComponent implements OnInit {
 
   public navigate(queryParams): void {
     this.router.navigate([`/${ROUTES.CODE_NAME}`], {
-      queryParams
+      queryParams,
     });
   }
 }

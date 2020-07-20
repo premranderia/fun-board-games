@@ -1,4 +1,4 @@
-.home-component {
+.linkee-home-component {
   display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
   display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
   display: -webkit-flex; /* NEW - Chrome */
@@ -61,7 +61,8 @@
   margin: 30px 30px 0 0;
 }
 .img-logo {
-  height: 100px;
+  height: 150px;
+  width: 790px;
 }
 .child {
   display: flex;
@@ -339,4 +340,18 @@ div.right > div.child {
   .left {
     margin: 30px;
   }
+}
+.mat-chip,
+.mat-chip-list-wrapper,
+.map-chip-list,
+.mat-form-field {
+  color: #fff !important;
+}
+.mat-form-field {
+  input {
+    color: #fff !important;
+  }
+}
+.mat-form-field-underline {
+  background-color: green !important;
 }

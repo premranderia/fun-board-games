@@ -1,7 +1,7 @@
-<div class="home-component">
+<div class="linkee-home-component">
   <div class="content">
     <div class="row">
-      <img src="../../assets/code-name-logo.png" class="img-logo" />
+      <img src="../../assets/linkee-image.png" class="img-logo" />
     </div>
     <div class="row row-content">
       <div class="left">
@@ -9,7 +9,7 @@
           class="video-iframe"
           width="420"
           height="345"
-          src="https://www.youtube.com/embed/zQVHkl8oQEU"
+          src="https://www.youtube.com/embed/8eeBDLmZrVo"
           frameborder="0"
           allow="autoplay; encrypted-media"
           allowfullscreen
@@ -17,13 +17,30 @@
       </div>
       <div class="right">
         <div class="child">
-          <input type="Button" class="btn new-game" (click)="navigate({})" value="New Game" />
+          <mat-form-field>
+            <mat-chip-list #chipList aria-label="Player">
+              <mat-chip *ngFor="let player of players" [selectable]="selectable" [removable]="removable" (removed)="remove(player)">
+                {{player.name}}
+                <mat-icon matChipRemove *ngIf="removable">x</mat-icon>
+              </mat-chip>
+              <input
+                placeholder="New Player"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)"
+              /> </mat-chip-list
+          ></mat-form-field>
+        </div>
+
+        <div class="child">
+          <input type="Button" class="btn new-game" (click)="enterGameWithId({})" value="New Game" />
         </div>
         <div class="child">
-          <span class="spy-info">Spy Masters Enter the Game ID </span>
+          <span class="spy-info">Enter the Game ID </span>
           <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" min="0" class="input-game" [(ngModel)]="gameId" />
           <mat-slide-toggle class="slide-toggle" [checked]="spyMode" color="warn" (change)="spyMode = !spyMode">
-            <label class="label">Spy View</label>
+            <label class="label">Master View</label>
           </mat-slide-toggle>
           <button mat-raised-button (click)="enterGameWithId()" color="warn" class="btn existing-game" [disabled]="this.gameId === 0">
             Retrieve Game

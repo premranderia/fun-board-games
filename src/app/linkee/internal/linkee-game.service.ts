@@ -1,11 +1,11 @@
-import { CodeBlock } from '../code-block.factory';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../environments/environment';
-import { GameData } from '../code-name.component';
+import { LinkeeGameData, Cards } from '../../linkee/linkee-game.component';
+
 @Injectable()
-export class CodeBlockService {
+export class LinkeeGameService {
   private headers: HttpHeaders;
   private server = `${environment.serverUrl}/api`;
 
@@ -14,14 +14,15 @@ export class CodeBlockService {
     this.headers.append('Content-Type', 'application/json');
   }
 
-  storeGame({ id, blocks, spyViewCount }: GameData): Observable<any> {
+  public storeGame({ id, players, currentCard, cards }: LinkeeGameData): Observable<any> {
     return this.http.post(
-      `${this.server}/code-name`,
+      `${this.server}/linkee-game`,
       {
         id,
         data: {
-          blocks,
-          spyViewCount,
+          players,
+          currentCard,
+          cards,
         },
       },
       {
@@ -30,13 +31,29 @@ export class CodeBlockService {
     );
   }
 
-  getGame({ id }): Promise<GameData> {
+  public getGame({ id }): Promise<LinkeeGameData> {
     return new Promise((resolve, reject) => {
       this.http
-        .get(`${this.server}/code-name/${id}`)
+        .get(`${this.server}/linkee-game/${id}`)
         .toPromise()
         .then(
-          (data: GameData) => {
+          (data: LinkeeGameData) => {
+            resolve(data);
+          },
+          () => {
+            reject();
+          }
+        );
+    });
+  }
+
+  public getQuestions(): Promise<Cards[]> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get(`${this.server}/linkeegame/questions`)
+        .toPromise()
+        .then(
+          (data: Cards[]) => {
             resolve(data);
           },
           () => {

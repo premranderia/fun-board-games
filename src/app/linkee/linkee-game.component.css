@@ -1,5 +1,5 @@
-.code-name {
-  font-family: sans-serif;
+.linkee-game {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
   /* font-size: 22px; */
   user-select: none;
   height: 100%;
@@ -7,18 +7,28 @@
   overflow: hidden;
   position: absolute;
   background-color: #050000;
-  background-color: #a66a10;
-  /* background-color: #005e61; */
-  background-image: url(../../assets/wood-pattern.png);
+  background-image: url(../../assets/linkee-game-bg-2.jpg);
 }
-.content-box {
+.content-box,
+.footer {
   display: flex;
   flex-wrap: wrap;
-  height: 85%;
+  /* height: 70%; */
   margin-top: 10px;
+  justify-content: center;
 }
-
-.block {
+.footer {
+  /* height: 100%; */
+}
+.clue {
+  justify-content: left;
+}
+.answer {
+  justify-content: center;
+  font-weight: bold;
+}
+.block,
+.question-card {
   -webkit-box-flex: 0;
   -ms-flex: 0 1 calc(20% - 12px);
   flex: 0 1 calc(20% - 12px);
@@ -26,13 +36,38 @@
   height: 200px;
   cursor: pointer;
   text-align: center;
-  text-transform: uppercase;
   font-size: 30px;
   /* border: 1px dotted #ccc; */
   border-radius: 20px;
   color: #040505;
-  height: calc(100% / 5);
-  background: rgba(255, 255, 255, 0.7);
+  /* height: calc(100% / 5); */
+  height: 130px;
+  background: rgba(255, 255, 255, 0.9);
+}
+.question-card {
+  height: 100%;
+  flex: 0 0 calc(50%);
+  padding: 20px;
+  box-shadow: inset 0 0 0 10px lightgrey;
+}
+.question-card .mat-chip {
+  padding: 15px 12px;
+  width: 100%;
+  font-weight: bold;
+  font-size: large;
+}
+.card-value {
+  margin-bottom: 10px;
+  font-size: large;
+  left: 40px;
+}
+.next-question {
+  float: right;
+  margin-right: 10px;
+}
+.questions {
+  text-align: left;
+  margin-bottom: 20px;
 }
 .block.WHITE:hover,
 .block.WHITE:focus,
@@ -68,7 +103,6 @@
 }
 .card-left {
   padding: 0 15px;
-  /* font-size: 30px; */
 }
 .reset {
   border: 0;
@@ -79,8 +113,6 @@
 }
 
 .header {
-  background-color: #2c2c2c;
-  color: #fff;
   height: 50px;
   font-size: 30px;
   display: flex;
@@ -88,7 +120,7 @@
   justify-content: center;
   align-items: center;
   padding: 0 15px;
-  background: rgba(1, 1, 1, 0.7);
+  color: black;
 }
 
 input {
@@ -132,7 +164,81 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 100%;
+}
+.game-score {
+  margin-top: 10%;
+  font-weight: bold;
+}
+.result:nth-child(0),
+.L {
+  color: #8c386a;
+}
+.result:nth-child(1),
+.L {
+  color: #8c386a;
+}
+.result:nth-child(2),
+.I {
+  color: #a6b632;
+}
+.result:nth-child(3),
+.N {
+  color: #cc3d39;
+}
+.result:nth-child(4),
+.K {
+  color: #83b4df;
+}
+.result:nth-child(5),
+.E {
+  color: #e2d548;
+}
+
+.result:nth-child(0) .mat-chip,
+#L {
+  background: #8c386a;
+}
+.result:nth-child(1) .mat-chip,
+.result:nth-child(7) .mat-chip,
+#L {
+  background: #8c386a;
+}
+.result:nth-child(2) .mat-chip,
+.result:nth-child(6) .mat-chip,
+#I {
+  background: #a6b632;
+}
+.result:nth-child(3) .mat-chip,
+#N {
+  background: #cc3d39;
+}
+.result:nth-child(4) .mat-chip,
+#K {
+  background: #83b4df;
+}
+.result:nth-child(5) .mat-chip,
+#E {
+  background: #e2d548;
+}
+
+.result:nth-child(8) .mat-chip,
+#E {
+  background: GREEN;
+  text-transform: UPPERCASE;
+}
+
+.block-content .name {
+  width: 100%;
+  text-decoration: underline;
+  color: darkslategray;
+}
+.block-content .result {
+  bottom: 0;
+}
+.block.players {
+  box-shadow: inset 0 0 0 10px lightgrey;
 }
 .label {
   cursor: pointer;
@@ -145,6 +251,7 @@ button.id-text.mat-mini-fab.mat-accent {
   width: 100px;
   /* font-size: 17px; */
   font-weight: bold;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
 }
 .cards-count {
   display: flex;
@@ -156,6 +263,13 @@ button.id-text.mat-mini-fab.mat-accent {
 .timer {
   right: 0;
   position: absolute;
+}
+
+button {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+.footer.no-events {
+  pointer-events: none;
 }
 
 /* ipad in landscape */

@@ -10,24 +10,21 @@
       </div>
       <div class="col-5 message">
         <button mat-mini-fab color="accent" class="id-text" *ngIf="gameResultColor === CodeBlockColor.NONE">
-          <span>ID: {{ gameId }}
-          </span>
+          <span>ID: {{ gameId }} </span>
         </button>
         <span class="result GREEN" *ngIf="gameResultColor !== CodeBlockColor.BLACK && gameResultColor !== CodeBlockColor.NONE">
           Congrats {{ gameResultColor }} team !!!
 
-          <span *ngIf="gameResultColor !== CodeBlockColor.NONE && isSpyMasterViewOn()">
-            Redirecting to Home {{ this.homeCountDown }}
-          </span>
+          <span *ngIf="gameResultColor !== CodeBlockColor.NONE && isSpyMasterViewOn()"> Redirecting to Home {{ this.homeCountDown }} </span>
         </span>
         <span class="result RED" *ngIf="gameResultColor === CodeBlockColor.BLACK">
           Game Over !!!
-          <span *ngIf="gameResultColor !== CodeBlockColor.NONE && isSpyMasterViewOn()">
-            Redirecting to Home {{ this.homeCountDown }}
-          </span>
+          <span *ngIf="gameResultColor !== CodeBlockColor.NONE && isSpyMasterViewOn()"> Redirecting to Home {{ this.homeCountDown }} </span>
         </span>
-        <span class="timer" *ngIf="gameResultColor === CodeBlockColor.NONE">
-          <button mat-mini-fab color="{{ this.countDownLimit <= 30 ? (this.countDownLimit % 2 === 0 ? 'warn': 'basic'): 'basic'}}">{{ this.countDownLimit }}</button>
+        <span class="timer">
+          <button mat-mini-fab color="{{ this.countDownLimit <= 30 ? (this.countDownLimit % 2 === 0 ? 'warn' : 'basic') : 'basic' }}">
+            {{ this.countDownLimit }}
+          </button>
         </span>
       </div>
       <div class="col-1 show-cards">
@@ -37,31 +34,37 @@
       </div>
       <div class="col-1">
         <mat-slide-toggle class="slide-toggle" [checked]="isSpyMasterViewOn()" (change)="toggleGameView()">
-          <span *ngIf="spyViewCount > 0">{{ spyViewCount }}</span> Spy</mat-slide-toggle>
+          <span *ngIf="spyViewCount > 0">{{ spyViewCount }}</span>
+          Spy</mat-slide-toggle
+        >
       </div>
       <div class="col-1">
         <mat-slide-toggle class="slide-toggle" [checked]="enableGujjuView" (change)="toggleGujjuVersion()">Gujju</mat-slide-toggle>
       </div>
       <div class="col-1">
-        <button mat-raised-button (click)="initGame({ enableGujjuView: enableGujjuView })" color="warn" class="reset">Reset</button>
+        <button mat-raised-button (click)="initGame({ enableGujjuView: enableGujjuView })" color="warn" class="reset">
+          Reset
+        </button>
       </div>
     </div>
   </div>
   <div class="content-box">
-    <div class="block" [ngClass]="getCodeBlockClass(block)" *ngFor="let block of codeBlocks;" (click)="onBlockClick(block)">
-      <div class="block-content" *ngIf="!loading && (!block.clicked || showAllCards)">{{ block.word }}</div>
+    <div class="block" [ngClass]="getCodeBlockClass(block)" *ngFor="let block of codeBlocks" (click)="onBlockClick(block)">
+      <div class="block-content" *ngIf="!loading && (!block.clicked || showAllCards)">
+        {{ block.word }}
+      </div>
     </div>
   </div>
   <audio #audioPlayerOnLoadSound>
-    <source src='../../assets/kbc.mp3' type="audio/mp3">
+    <source src="../../assets/kbc.mp3" type="audio/mp3" />
   </audio>
   <audio #audioLockSound>
-    <source src='../../assets/lock-tune.mp3' type="audio/mp3">
+    <source src="../../assets/lock-tune.mp3" type="audio/mp3" />
   </audio>
   <audio #audioGameOverSound>
-    <source src='../../assets/game-over.mp3' type="audio/mp3">
+    <source src="../../assets/game-over.mp3" type="audio/mp3" />
   </audio>
   <audio #audioGameWinnerSound>
-    <source src='../../assets/game-winner.mp3' type="audio/mp3">
+    <source src="../../assets/game-winner.mp3" type="audio/mp3" />
   </audio>
 </div>

@@ -7,15 +7,50 @@ import { CodeNameComponent } from './component/code-name.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home-component/home-component';
 import { HomeRoutesComponent } from './routes/home-routes.component';
+import { LinkeeHomeRoutesComponent } from './routes/linkee-home-routes.component';
 import { CodeNameRoutesComponent } from './routes/code-name-routes.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LinkeeHomeComponent } from './linkee-home-component/linkee-home-component';
+import { LinkeeGameRouteComponent } from './routes/linkee-game-routes.component';
+import { LinkeeGameComponent } from './linkee/linkee-game.component';
 import {
-  MatSlideToggleModule,
+  MatAutocompleteModule,
   MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
   MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatStepperModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
 } from '@angular/material';
-// import { MatButtonModule } from '@angular/material/button';
+import { IndexComponent } from './index/index.component';
+import { IndexRoutesComponent } from './routes/index-routes.component';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -24,10 +59,52 @@ import {
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,
+    MatChipsModule,
+    MatAutocompleteModule,
     MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
     MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatStepperModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
   ],
-  declarations: [AppComponent, CodeNameComponent, HomeComponent, HomeRoutesComponent, CodeNameRoutesComponent],
-  bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    CodeNameComponent,
+    HomeComponent,
+    HomeRoutesComponent,
+    CodeNameRoutesComponent,
+    LinkeeHomeRoutesComponent,
+    LinkeeHomeComponent,
+    LinkeeGameRouteComponent,
+    LinkeeGameComponent,
+    IndexComponent,
+    IndexRoutesComponent,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
