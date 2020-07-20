@@ -14,25 +14,20 @@
         <span class="BLUE card-left">{{ minColorLeft }}</span> -->
       </div>
       <div class="col-5 message">
-        <button mat-mini-fab color="accent" class="id-text" *ngIf="gameResultColor === CodeBlockColor">
+        <button mat-mini-fab color="accent" class="id-text">
           <span>ID: {{ gameId }} </span>
         </button>
-        <span class="result GREEN" *ngIf="gameResultColor !== CodeBlockColor && gameResultColor !== CodeBlockColor">
-          Congrats {{ gameResultColor }} team !!!
-
-          <span *ngIf="gameResultColor !== CodeBlockColor"> Redirecting to Home {{ this.homeCountDown }} </span>
-        </span>
         <span class="result RED" *ngIf="isGameOver"> {{ playerWhoWon.name }} Wins !!! </span>
-        <span class="timer" *ngIf="gameResultColor === CodeBlockColor">
+        <span class="timer">
           <button mat-mini-fab color="{{ this.countDownLimit <= 30 ? (this.countDownLimit % 2 === 0 ? 'warn' : 'basic') : 'basic' }}">
             {{ this.countDownLimit }}
           </button>
         </span>
       </div>
       <div class="col-1 show-cards">
-        <mat-slide-toggle *ngIf="" class="slide-toggle-board" (change)="toggleShowAllCards()">
+        <!-- <mat-slide-toggle *ngIf="" class="slide-toggle-board" (change)="toggleShowAllCards()">
           Board
-        </mat-slide-toggle>
+        </mat-slide-toggle> -->
       </div>
       <div class="col-1">
         <mat-slide-toggle class="slide-toggle" [checked]="isSpyMasterViewOn()" (change)="toggleGameView()"> Spy</mat-slide-toggle>

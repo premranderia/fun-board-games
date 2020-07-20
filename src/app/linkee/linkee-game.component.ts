@@ -88,7 +88,7 @@ export class LinkeeGameComponent implements OnInit {
       });
   }
 
-  public async initGame({ id, currentCard, gameView, cards }) {
+  public async initGame({ id, currentCard, gameView, cards }: LinkeeGameData) {
     if (_.isUndefined(cards)) {
       const questionsRes = await this.linkeeGameService.getQuestions();
       this.cards = _.shuffle(questionsRes);
@@ -245,9 +245,10 @@ export class LinkeeGameComponent implements OnInit {
 
 export interface LinkeeGameData {
   id: number;
-  players: Players[];
+  players?: Players[];
   currentCard: number;
   cards: Cards[];
+  gameView?: GameView;
 }
 
 export interface Cards {
