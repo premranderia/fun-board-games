@@ -244,10 +244,10 @@ export class LinkeeGameComponent implements OnInit {
 }
 
 export interface LinkeeGameData {
-  id: number;
+  id?: number;
   players?: Players[];
   currentCard: number;
-  cards: Cards[];
+  cards?: Cards[];
   gameView?: GameView;
 }
 
