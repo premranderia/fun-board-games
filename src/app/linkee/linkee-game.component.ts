@@ -187,6 +187,11 @@ export class LinkeeGameComponent implements OnInit {
   }
 
   public updateScore(player: Players) {
+    if (!_.isUndefined(this.cards[this.currentCard].player)) {
+      console.debug('Score Assigned');
+      return;
+    }
+    this.cards[this.currentCard].player = player;
     player.score[this.cards[this.currentCard].value]++;
     this.isGameOver = this.isPlayerWon(player);
     this.saveBoard();
@@ -254,4 +259,5 @@ export interface LinkeeGameData {
 export interface Cards {
   value: string;
   questions: string[];
+  player: Players;
 }

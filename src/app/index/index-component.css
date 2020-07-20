@@ -3,3 +3,6 @@
   width: 500px;
   cursor: pointer;
 }
+.img-logo:hover {
+  opacity: 0.5;
+}

@@ -61,7 +61,7 @@
     </div>
   </div>
 
-  <div class="footer" [ngClass]="{ 'no-events': isGameOver }">
+  <div class="footer" [ngClass]="{ 'no-events': isGameOver || !isSpyMasterViewOn() }">
     <div class="block players" *ngFor="let player of players">
       <div class="block-content" (click)="updateScore(player)">
         <div class="name">
