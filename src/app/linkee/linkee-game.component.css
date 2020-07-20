@@ -42,7 +42,7 @@
   color: #040505;
   /* height: calc(100% / 5); */
   height: 130px;
-  background: rgba(25, 211, 211, 0.1);
+  background: rgba(255, 255, 255, 0.9);
 }
 .question-card {
   height: 100%;
@@ -121,6 +121,7 @@
   align-items: center;
   padding: 0 15px;
   color: black;
+  background: rgba(25, 211, 211, 0.1);
 }
 
 input {
