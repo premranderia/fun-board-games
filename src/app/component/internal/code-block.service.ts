@@ -1,4 +1,3 @@
-
 import { CodeBlock } from '../code-block.factory';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -16,25 +15,34 @@ export class CodeBlockService {
   }
 
   storeGame({ id, blocks, spyViewCount }: GameData): Observable<any> {
-    return this.http.post(`${this.server}/code-name`, {
-      id,
-      data: {
-        blocks,
-        spyViewCount
+    return this.http.post(
+      `${this.server}/code-name`,
+      {
+        id,
+        data: {
+          blocks,
+          spyViewCount,
+        },
+      },
+      {
+        headers: this.headers,
       }
-    }, {
-        headers: this.headers
-      });
+    );
   }
 
   getGame({ id }): Promise<GameData> {
     return new Promise((resolve, reject) => {
-      this.http.get(`${this.server}/code-name/${id}`).toPromise().then((data: GameData) => {
-        resolve(data);
-      }, () => {
-        reject();
-      });
+      this.http
+        .get(`${this.server}/code-name/${id}`)
+        .toPromise()
+        .then(
+          (data: GameData) => {
+            resolve(data);
+          },
+          () => {
+            reject();
+          }
+        );
     });
   }
-
 }

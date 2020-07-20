@@ -14,70 +14,31 @@
         <span class="BLUE card-left">{{ minColorLeft }}</span> -->
       </div>
       <div class="col-5 message">
-        <button
-          mat-mini-fab
-          color="accent"
-          class="id-text"
-          *ngIf="gameResultColor === CodeBlockColor"
-        >
+        <button mat-mini-fab color="accent" class="id-text" *ngIf="gameResultColor === CodeBlockColor">
           <span>ID: {{ gameId }} </span>
         </button>
-        <span
-          class="result GREEN"
-          *ngIf="
-            gameResultColor !== CodeBlockColor &&
-            gameResultColor !== CodeBlockColor
-          "
-        >
+        <span class="result GREEN" *ngIf="gameResultColor !== CodeBlockColor && gameResultColor !== CodeBlockColor">
           Congrats {{ gameResultColor }} team !!!
 
-          <span *ngIf="gameResultColor !== CodeBlockColor">
-            Redirecting to Home {{ this.homeCountDown }}
-          </span>
+          <span *ngIf="gameResultColor !== CodeBlockColor"> Redirecting to Home {{ this.homeCountDown }} </span>
         </span>
-        <span class="result RED" *ngIf="isGameOver">
-          {{ playerWhoWon.name }} Wins !!!
-        </span>
+        <span class="result RED" *ngIf="isGameOver"> {{ playerWhoWon.name }} Wins !!! </span>
         <span class="timer" *ngIf="gameResultColor === CodeBlockColor">
-          <button
-            mat-mini-fab
-            color="{{
-              this.countDownLimit <= 30
-                ? this.countDownLimit % 2 === 0
-                  ? 'warn'
-                  : 'basic'
-                : 'basic'
-            }}"
-          >
+          <button mat-mini-fab color="{{ this.countDownLimit <= 30 ? (this.countDownLimit % 2 === 0 ? 'warn' : 'basic') : 'basic' }}">
             {{ this.countDownLimit }}
           </button>
         </span>
       </div>
       <div class="col-1 show-cards">
-        <mat-slide-toggle
-          *ngIf=""
-          class="slide-toggle-board"
-          (change)="toggleShowAllCards()"
-        >
+        <mat-slide-toggle *ngIf="" class="slide-toggle-board" (change)="toggleShowAllCards()">
           Board
         </mat-slide-toggle>
       </div>
       <div class="col-1">
-        <mat-slide-toggle
-          class="slide-toggle"
-          [checked]="isSpyMasterViewOn()"
-          (change)="toggleGameView()"
-        >
-          Spy</mat-slide-toggle
-        >
+        <mat-slide-toggle class="slide-toggle" [checked]="isSpyMasterViewOn()" (change)="toggleGameView()"> Spy</mat-slide-toggle>
       </div>
       <div class="col-1">
-        <button
-          mat-raised-button
-          (click)="initGame({})"
-          color="warn"
-          class="reset"
-        >
+        <button mat-raised-button (click)="initGame({})" color="warn" class="reset">
           Reset
         </button>
       </div>
@@ -86,48 +47,19 @@
 
   <div class="content-box">
     <div class="question-card" *ngIf="cards">
-      <button
-        mat-fab
-        class="card-value"
-        color="primary"
-        id="{{ cards[currentCard].value }}"
-      >
+      <button mat-fab class="card-value" color="primary" id="{{ cards[currentCard].value }}">
         {{ cards[currentCard].value }}
       </button>
       <span class="next-question" (click)="goToNextQuestion()">NEXT</span>
-      <div
-        class="questions result"
-        *ngFor="let question of cards[currentCard].questions; let i = index"
-      >
+      <div class="questions result" *ngFor="let question of cards[currentCard].questions; let i = index">
         <mat-chip-list>
-          <mat-chip
-            id="{{ i }}"
-            (click)="showOption(i)"
-            style="cursor: pointer;"
-          >
+          <mat-chip id="{{ i }}" (click)="showOption(i)" style="cursor: pointer;">
             <span *ngIf="i <= 3">{{ i + 1 }}.</span>
-            <span
-              id="option-{{ i }}"
-              *ngIf="i <= 3"
-              [hidden]="optionHidden[i]"
-              >{{ question }}</span
-            >
+            <span id="option-{{ i }}" *ngIf="i <= 3" [hidden]="optionHidden[i]">{{ question }}</span>
             <span *ngIf="i == 4">Clue: </span>
-            <span
-              class="clue"
-              id="option-{{ i }}"
-              *ngIf="i == 4"
-              [hidden]="optionHidden[i]"
-              >{{ question }}</span
-            >
+            <span class="clue" id="option-{{ i }}" *ngIf="i == 4" [hidden]="optionHidden[i]">{{ question }}</span>
             <span *ngIf="i == 5">Answer:</span>
-            <span
-              class="answer"
-              id="option-{{ i }}"
-              *ngIf="i == 5"
-              [hidden]="optionHidden[i]"
-              >{{ question }}</span
-            >
+            <span class="answer" id="option-{{ i }}" *ngIf="i == 5" [hidden]="optionHidden[i]">{{ question }}</span>
           </mat-chip>
         </mat-chip-list>
       </div>
@@ -141,10 +73,7 @@
           {{ player.name }}
         </div>
         <div class="game-score">
-          <span
-            class="result"
-            *ngFor="let res of _.keys(player.score); let i = index"
-          >
+          <span class="result" *ngFor="let res of _.keys(player.score); let i = index">
             {{ res }} <sup>{{ player.score[res] }}</sup></span
           >
         </div>

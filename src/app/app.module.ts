@@ -1,19 +1,19 @@
-import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
-import { FormsModule } from "@angular/forms";
-import { RouterModule, Routes } from "@angular/router";
-import { AppComponent } from "./app.component";
-import { CodeNameComponent } from "./component/code-name.component";
-import { HttpClientModule } from "@angular/common/http";
-import { HomeComponent } from "./home-component/home-component";
-import { HomeRoutesComponent } from "./routes/home-routes.component";
-import { LinkeeHomeRoutesComponent } from "./routes/linkee-home-routes.component";
-import { CodeNameRoutesComponent } from "./routes/code-name-routes.component";
-import { AppRoutingModule } from "./app-routing.module";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { LinkeeHomeComponent } from "./linkee-home-component/linkee-home-component";
-import { LinkeeGameRouteComponent } from "./routes/linkee-game-routes.component";
-import { LinkeeGameComponent } from "./linkee/linkee-game.component";
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
+import { CodeNameComponent } from './component/code-name.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home-component/home-component';
+import { HomeRoutesComponent } from './routes/home-routes.component';
+import { LinkeeHomeRoutesComponent } from './routes/linkee-home-routes.component';
+import { CodeNameRoutesComponent } from './routes/code-name-routes.component';
+import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LinkeeHomeComponent } from './linkee-home-component/linkee-home-component';
+import { LinkeeGameRouteComponent } from './routes/linkee-game-routes.component';
+import { LinkeeGameComponent } from './linkee/linkee-game.component';
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -47,9 +47,9 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-} from "@angular/material";
-import { IndexComponent } from "./index/index.component";
-import { IndexRoutesComponent } from "./routes/index-routes.component";
+} from '@angular/material';
+import { IndexComponent } from './index/index.component';
+import { IndexRoutesComponent } from './routes/index-routes.component';
 
 @NgModule({
   imports: [

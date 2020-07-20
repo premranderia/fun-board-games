@@ -18,7 +18,7 @@ import { QueryParams } from '../home-component/home-component';
   selector: 'code-name',
   templateUrl: `./code-name.component.html`,
   providers: [CodeBlockService, SocketService],
-  styleUrls: ['./code-name.component.css', '../app.css']
+  styleUrls: ['./code-name.component.css', '../app.css'],
 })
 export class CodeNameComponent implements OnInit {
   @ViewChild('audioPlayerOnLoadSound') audioPlayerOnLoadSound: ElementRef;
@@ -57,9 +57,12 @@ export class CodeNameComponent implements OnInit {
   private messages: Array<any>;
   private timeOutInterval: any;
 
-  constructor(private route: ActivatedRoute, private codeBlockService: CodeBlockService,
+  constructor(
+    private route: ActivatedRoute,
+    private codeBlockService: CodeBlockService,
     private router: Router,
-    private socketService: SocketService) {
+    private socketService: SocketService
+  ) {
     this.codeBlocks = [];
     this.gameId = undefined;
     this.colors = [];
@@ -124,27 +127,22 @@ export class CodeNameComponent implements OnInit {
   public initSocket(): void {
     this.messages = [];
     this.socketService.initSocket();
-    this.ioConnection = this.socketService.onMessage()
-      .subscribe((message: GameData & { count: number }) => {
-        if (message) {
-          if (message.id && Number(message.id) === Number(this.gameId)) {
-            this.codeBlocks = message.blocks;
-            this.updateColorLeft();
-          }
-          if (message.gameResult) {
-            this.gameResultColor = message.gameResult;
-            this.postGameOverAction();
-          }
+    this.ioConnection = this.socketService.onMessage().subscribe((message: GameData & { count: number }) => {
+      if (message) {
+        if (message.id && Number(message.id) === Number(this.gameId)) {
+          this.codeBlocks = message.blocks;
+          this.updateColorLeft();
         }
-      });
+        if (message.gameResult) {
+          this.gameResultColor = message.gameResult;
+          this.postGameOverAction();
+        }
+      }
+    });
 
-    this.socketService.onEvent(Event.CONNECT)
-      .subscribe((message: any) => {
-      });
+    this.socketService.onEvent(Event.CONNECT).subscribe((message: any) => {});
 
-    this.socketService.onEvent(Event.DISCONNECT)
-      .subscribe(() => {
-      });
+    this.socketService.onEvent(Event.DISCONNECT).subscribe(() => {});
     this.socketService.getActiveClients();
   }
 
@@ -158,7 +156,7 @@ export class CodeNameComponent implements OnInit {
     }
     this.socketService.send({
       from: this.gameId,
-      message
+      message,
     });
   }
 
@@ -215,7 +213,7 @@ export class CodeNameComponent implements OnInit {
     if (this.AUDIO_SOUNDS) {
       this.audioLockSound.nativeElement.play();
     }
-    this.isSpyMasterViewOn() === false ? block.currentColor = block.color : undefined;
+    this.isSpyMasterViewOn() === false ? (block.currentColor = block.color) : undefined;
     this.updateColorLeft();
     this.checkWinner();
     this.postGameOverAction();
@@ -277,9 +275,7 @@ export class CodeNameComponent implements OnInit {
     }
   }
   private isBlockClickDisabled(block: CodeBlock) {
-    return this.gameResultColor !== CodeBlockColor.NONE ||
-      this.isSpyMasterViewOn() ||
-      block.clicked;
+    return this.gameResultColor !== CodeBlockColor.NONE || this.isSpyMasterViewOn() || block.clicked;
   }
 
   private updateColorLeft() {
@@ -342,7 +338,8 @@ export class CodeNameComponent implements OnInit {
    * Shuffle the words
    */
   private shuffleWords(): void {
-    let wordPool: string[]; this.words = _.sampleSize(DATA, this.totalBlocks);
+    let wordPool: string[];
+    this.words = _.sampleSize(DATA, this.totalBlocks);
     wordPool = this.enableGujjuView ? DATA_GUJJU : DATA;
     this.words = _.sampleSize(wordPool, this.totalBlocks);
   }
@@ -351,11 +348,13 @@ export class CodeNameComponent implements OnInit {
    * Save the board and emit the message for socket
    */
   private saveBoard(): void {
-    this.codeBlockService.storeGame({
-      id: this.gameId,
-      blocks: this.codeBlocks,
-      spyViewCount: this.gameView === GameView.SPYMASTER ? 1 : 0,
-    }).subscribe();
+    this.codeBlockService
+      .storeGame({
+        id: this.gameId,
+        blocks: this.codeBlocks,
+        spyViewCount: this.gameView === GameView.SPYMASTER ? 1 : 0,
+      })
+      .subscribe();
     this.sendMessage({
       id: this.gameId,
       blocks: this.codeBlocks,
@@ -369,7 +368,7 @@ export class CodeNameComponent implements OnInit {
   private async fetchCodeBlockByGameId(id): Promise<Array<CodeBlock>> {
     let codeBlocks = undefined;
     const data: GameData = await this.codeBlockService.getGame({
-      id
+      id,
     });
     // this.disableSpyMode = data['spyViewCount'] > 1;
     if (!_.isEmpty(data.blocks)) {
@@ -386,11 +385,13 @@ export class CodeNameComponent implements OnInit {
   private createBlocks(): void {
     let id = 0;
     while (id < this.totalBlocks) {
-      this.codeBlocks.push(new CodeBlock({
-        color: this.colors[id],
-        word: this.words[id],
-        id
-      }));
+      this.codeBlocks.push(
+        new CodeBlock({
+          color: this.colors[id],
+          word: this.words[id],
+          id,
+        })
+      );
       id++;
     }
   }

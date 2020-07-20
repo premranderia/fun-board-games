@@ -1,9 +1,8 @@
-
 .linkee-home-component {
-  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
-  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
-  display: -webkit-flex;     /* NEW - Chrome */
-  display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -webkit-flex; /* NEW - Chrome */
+  display: flex; /* NEW, Spec - Opera 12.1, Firefox 20+ */
   -webkit-box-flex-direction: row;
   -moz-box-flex-direction: row;
   -webkit-flex-direction: row;
@@ -16,7 +15,7 @@
 .content {
   margin: auto;
   /* width: 500px; */
-  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   /* padding: 20px 50px; */
   padding: 50px 200px;
   background-image: url(../../assets/wood-pattern.png);
@@ -47,14 +46,15 @@
   height: 30px;
   padding: 0 15px;
   font-size: 12px;
-  font-weight: 700;    
+  font-weight: 700;
   border: 0;
   color: #fff;
   height: 50px;
   font-size: 16px;
   cursor: pointer;
 }
-.left, .right {
+.left,
+.right {
   display: flex;
 }
 .left {
@@ -79,7 +79,7 @@
 }
 div.right > div.child {
   margin-bottom: 30px;
-} 
+}
 .input-game {
   border: 1px dotted #ef9a9a;
   width: 80px;
@@ -105,11 +105,23 @@ div.right > div.child {
   color: #ef9a9a;
   font-weight: bold;
 }
-.spy-info, .warning {
+.spy-info,
+.warning {
   color: #fff;
   font-size: 14px;
 }
-.mat-fab.mat-accent[disabled], .mat-fab.mat-primary[disabled], .mat-fab.mat-warn[disabled], .mat-fab[disabled][disabled], .mat-mini-fab.mat-accent[disabled], .mat-mini-fab.mat-primary[disabled], .mat-mini-fab.mat-warn[disabled], .mat-mini-fab[disabled][disabled], .mat-raised-button.mat-accent[disabled], .mat-raised-button.mat-primary[disabled], .mat-raised-button.mat-warn[disabled], .mat-raised-button[disabled][disabled] {
+.mat-fab.mat-accent[disabled],
+.mat-fab.mat-primary[disabled],
+.mat-fab.mat-warn[disabled],
+.mat-fab[disabled][disabled],
+.mat-mini-fab.mat-accent[disabled],
+.mat-mini-fab.mat-primary[disabled],
+.mat-mini-fab.mat-warn[disabled],
+.mat-mini-fab[disabled][disabled],
+.mat-raised-button.mat-accent[disabled],
+.mat-raised-button.mat-primary[disabled],
+.mat-raised-button.mat-warn[disabled],
+.mat-raised-button[disabled][disabled] {
   background: #dc3545;
   color: #fff;
   opacity: 0.5;
@@ -124,10 +136,7 @@ div.right > div.child {
 }
 
 /* ipad in landscape */
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
-and (orientation : landscape) { 
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
   .logo {
     width: 600px;
     height: 800px;
@@ -147,11 +156,7 @@ and (orientation : landscape) {
 }
 
 /* ipad PRO in landscape */
-@media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1366px) 
-  and (orientation: landscape) 
-  and (-webkit-min-device-pixel-ratio: 1.5) {
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1.5) {
   .logo {
     width: 960px;
     height: 1000px;
@@ -170,11 +175,7 @@ and (orientation : landscape) {
   }
 }
 
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
-and (orientation : landscape)
-and (-webkit-min-device-pixel-ratio: 2) { 
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
   .logo {
     width: 600px;
     height: 800px;
@@ -194,10 +195,7 @@ and (-webkit-min-device-pixel-ratio: 2) {
 }
 
 /* iphone 6,7,8 */
-@media only screen 
-and (min-device-width : 375px) 
-and (max-device-width : 667px) 
-and (orientation : landscape) { 
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: landscape) {
   .logo {
     width: 250px;
     height: 345px;
@@ -217,10 +215,7 @@ and (orientation : landscape) {
 }
 
 /* iphone 6,7,8 plus */
-@media only screen 
-and (min-device-width : 414px) 
-and (max-device-width : 736px) 
-and (orientation : landscape) {
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation: landscape) {
   .logo {
     width: 250px;
     height: 345px;
@@ -238,11 +233,7 @@ and (orientation : landscape) {
   }
 }
 /* iphone X */
-@media only screen 
-and (min-device-width : 375px) 
-and (max-device-width : 812px) 
-and (-webkit-device-pixel-ratio : 3)
-and (orientation : landscape) { 
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape) {
   .logo {
     width: 250px;
     height: 354px;
@@ -261,11 +252,7 @@ and (orientation : landscape) {
   }
 }
 
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
-and (orientation : portrait)
-and (-webkit-min-device-pixel-ratio: 2) { 
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
   .logo {
     width: 600px;
     height: 800px;
@@ -288,10 +275,7 @@ and (-webkit-min-device-pixel-ratio: 2) {
 }
 
 /* iphone 6,7,8 */
-@media only screen 
-and (min-device-width : 375px) 
-and (max-device-width : 667px) 
-and (orientation : portrait) { 
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: portrait) {
   .logo {
     width: 250px;
     height: 345px;
@@ -314,10 +298,7 @@ and (orientation : portrait) {
 }
 
 /* iphone 6,7,8 plus */
-@media only screen 
-and (min-device-width : 414px) 
-and (max-device-width : 736px) 
-and (orientation : portrait) {
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation: portrait) {
   .logo {
     width: 250px;
     height: 345px;
@@ -334,16 +315,12 @@ and (orientation : portrait) {
     width: 200px;
     height: 145px;
   }
-   .left {
+  .left {
     margin: 30px;
   }
 }
 /* iphone X */
-@media only screen 
-and (min-device-width : 375px) 
-and (max-device-width : 812px) 
-and (-webkit-device-pixel-ratio : 3)
-and (orientation : portrait) { 
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
   .logo {
     width: 250px;
     height: 354px;
@@ -364,7 +341,10 @@ and (orientation : portrait) {
     margin: 30px;
   }
 }
-.mat-chip, .mat-chip-list-wrapper, .map-chip-list , .mat-form-field{
+.mat-chip,
+.mat-chip-list-wrapper,
+.map-chip-list,
+.mat-form-field {
   color: #fff !important;
 }
 .mat-form-field {

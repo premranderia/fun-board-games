@@ -1,15 +1,11 @@
-import { OnInit, Component } from "@angular/core";
-import { Route, Router } from "@angular/router";
-import { ROUTES } from "../routes/route.constant";
+import { OnInit, Component } from '@angular/core';
+import { Route, Router } from '@angular/router';
+import { ROUTES } from '../routes/route.constant';
 
 @Component({
-  selector: "index-component",
-  templateUrl: "./index-component.html",
-  styleUrls: [
-    "./index-component.css",
-    "../app.css",
-    "../home-component/home-component.css",
-  ],
+  selector: 'index-component',
+  templateUrl: './index-component.html',
+  styleUrls: ['./index-component.css', '../app.css', '../home-component/home-component.css'],
 })
 export class IndexComponent implements OnInit {
   ROUTES = ROUTES;

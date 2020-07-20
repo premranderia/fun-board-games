@@ -1,21 +1,18 @@
-import { Component, Input, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { ActivatedRoute, Params, UrlSegment, Router } from "@angular/router";
-import { Event } from "../socket/socket-events";
-import * as _ from "lodash";
-import { SocketService } from "../socket/socket.service";
-import {
-  QueryParams,
-  Players,
-} from "../linkee-home-component/linkee-home-component";
-import { ROUTES } from "../routes/route.constant";
-import { LinkeeGameService } from "./internal/linkee-game.service";
-import { GameView } from "../component/code-block.constant";
+import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { ActivatedRoute, Params, UrlSegment, Router } from '@angular/router';
+import { Event } from '../socket/socket-events';
+import * as _ from 'lodash';
+import { SocketService } from '../socket/socket.service';
+import { QueryParams, Players } from '../linkee-home-component/linkee-home-component';
+import { ROUTES } from '../routes/route.constant';
+import { LinkeeGameService } from './internal/linkee-game.service';
+import { GameView } from '../component/code-block.constant';
 
 @Component({
-  selector: "linkee-game",
+  selector: 'linkee-game',
   templateUrl: `./linkee-game.component.html`,
   providers: [SocketService, LinkeeGameService],
-  styleUrls: ["./linkee-game.component.css", "../app.css"],
+  styleUrls: ['./linkee-game.component.css', '../app.css'],
 })
 export class LinkeeGameComponent implements OnInit {
   COUNT_DOWN_LIMIT = 120;
@@ -40,7 +37,7 @@ export class LinkeeGameComponent implements OnInit {
   private messages: Array<any>;
   private ioConnection: any;
   private defaultPlayer: Players = {
-    name: "PREM",
+    name: 'PREM',
     score: _.clone(this.score),
   };
 
@@ -112,16 +109,14 @@ export class LinkeeGameComponent implements OnInit {
   public initSocket(): void {
     this.messages = [];
     this.socketService.initSocket();
-    this.ioConnection = this.socketService
-      .onMessage()
-      .subscribe((message: LinkeeGameData) => {
-        if (message.players) {
-          this.players = message.players;
-        }
-        if (message.currentCard) {
-          this.currentCard = message.currentCard;
-        }
-      });
+    this.ioConnection = this.socketService.onMessage().subscribe((message: LinkeeGameData) => {
+      if (message.players) {
+        this.players = message.players;
+      }
+      if (message.currentCard) {
+        this.currentCard = message.currentCard;
+      }
+    });
 
     this.socketService.onEvent(Event.CONNECT).subscribe((message: any) => {});
 
@@ -182,10 +177,7 @@ export class LinkeeGameComponent implements OnInit {
   }
 
   public toggleGameView() {
-    this.gameView =
-      this.gameView === GameView.SPYMASTER
-        ? GameView.PLAYER
-        : GameView.SPYMASTER;
+    this.gameView = this.gameView === GameView.SPYMASTER ? GameView.PLAYER : GameView.SPYMASTER;
     this.resetOptionHidden();
     this.saveBoard();
   }

@@ -3,10 +3,10 @@ export enum CodeBlockColor {
   YELLOW = 'YELLOW',
   BLUE = 'BLUE',
   BLACK = 'BLACK',
-  NONE = 'WHITE'
+  NONE = 'WHITE',
 }
 
 export enum GameView {
   PLAYER,
-  SPYMASTER
+  SPYMASTER,
 }

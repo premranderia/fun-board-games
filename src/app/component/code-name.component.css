@@ -32,30 +32,35 @@
   border-radius: 20px;
   color: #040505;
   height: calc(100% / 5);
-  background: rgba(255,255,255,0.7);
+  background: rgba(255, 255, 255, 0.7);
 }
-.block.WHITE:hover, .block.WHITE:focus, .block.WHITE:active {
+.block.WHITE:hover,
+.block.WHITE:focus,
+.block.WHITE:active {
   opacity: 0.5;
 }
 
 .block.YELLOW {
-  background: #E9EC05;
+  background: #e9ec05;
 }
 
-.block.BLUE, .BLUE {
-  background: #0572EC;
+.block.BLUE,
+.BLUE {
+  background: #0572ec;
 }
 
-.block.GREEN, .GREEN {
-  background: #05EC0C;
+.block.GREEN,
+.GREEN {
+  background: #05ec0c;
 }
 
 .block.BLACK {
-  background: #7D7D73;
+  background: #7d7d73;
 }
 
-.block.RED, .RED {
-  background: #EC2E05;
+.block.RED,
+.RED {
+  background: #ec2e05;
 }
 
 .warning {
@@ -68,7 +73,7 @@
 .reset {
   border: 0;
   color: #fff;
-  background: #EC2E05;
+  background: #ec2e05;
   padding: 0;
   padding: 0 10px;
 }
@@ -118,7 +123,7 @@ input {
 }
 .slide-toggle {
   margin: 10px;
-  float:right;
+  float: right;
 }
 .slide-toggle-board {
   margin: 10px;
@@ -154,10 +159,7 @@ button.id-text.mat-mini-fab.mat-accent {
 }
 
 /* ipad in landscape */
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
-and (orientation : landscape) { 
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
   .block {
     height: 16%;
     font-size: 12px;
@@ -172,11 +174,7 @@ and (orientation : landscape) {
   }
 }
 
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
-and (orientation : landscape)
-and (-webkit-min-device-pixel-ratio: 2) { 
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
   .block {
     height: 16%;
     font-size: 22px;
@@ -192,10 +190,7 @@ and (-webkit-min-device-pixel-ratio: 2) {
 }
 
 /* iphone 6,7,8 */
-@media only screen 
-and (min-device-width : 375px) 
-and (max-device-width : 667px) 
-and (orientation : landscape) { 
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: landscape) {
   .block {
     height: 16%;
     font-size: 19px;
@@ -216,10 +211,7 @@ and (orientation : landscape) {
 }
 
 /* iphone 6,7,8 plus */
-@media only screen 
-and (min-device-width : 414px) 
-and (max-device-width : 736px) 
-and (orientation : landscape) {
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation: landscape) {
   .block {
     height: 16%;
     font-size: 19px;
@@ -234,19 +226,13 @@ and (orientation : landscape) {
     min-width: 45px;
   }
 
-
   .show-cards {
     display: none;
   }
 }
 
-
 /* iphone X */
-@media only screen 
-and (min-device-width : 737px) 
-and (max-device-width : 812px) 
-and (-webkit-device-pixel-ratio : 3)
-and (orientation : landscape) {
+@media only screen and (min-device-width: 737px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape) {
   .header {
     font-size: 12px;
   }
@@ -255,19 +241,13 @@ and (orientation : landscape) {
     min-width: 45px;
   }
 
-
   .show-cards {
     display: none;
   }
 }
 
-
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
-and (orientation : portrait)
-and (-webkit-min-device-pixel-ratio: 2) { 
- .block {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  .block {
     flex: 0 1 18%;
     font-size: 16px;
   }
@@ -278,12 +258,9 @@ and (-webkit-min-device-pixel-ratio: 2) {
 }
 
 /* iphone 6,7,8 */
-@media only screen 
-and (min-device-width : 375px) 
-and (max-device-width : 667px) 
-and (orientation : portrait) { 
- .block {
-    flex: 0 1 100%
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: portrait) {
+  .block {
+    flex: 0 1 100%;
   }
 
   .code-name {
@@ -305,12 +282,9 @@ and (orientation : portrait) {
 }
 
 /* iphone 6,7,8 plus */
-@media only screen 
-and (min-device-width : 414px) 
-and (max-device-width : 736px) 
-and (orientation : portrait) {
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation: portrait) {
   .block {
-    flex: 0 1 100%
+    flex: 0 1 100%;
   }
 
   .code-name {
@@ -328,19 +302,14 @@ and (orientation : portrait) {
     display: none;
   }
 
-
   .show-cards {
     display: none;
   }
 }
 /* iphone X */
-@media only screen 
-and (min-device-width : 375px) 
-and (max-device-width : 812px) 
-and (-webkit-device-pixel-ratio : 3)
-and (orientation : portrait) { 
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
   .block {
-    flex: 0 1 100%
+    flex: 0 1 100%;
   }
   .code-name {
     overflow: scroll;

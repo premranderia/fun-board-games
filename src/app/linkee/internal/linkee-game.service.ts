@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs/Observable";
-import { environment } from "../../../environments/environment";
-import { LinkeeGameData, Cards } from "../../linkee/linkee-game.component";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { environment } from '../../../environments/environment';
+import { LinkeeGameData, Cards } from '../../linkee/linkee-game.component';
 
 @Injectable()
 export class LinkeeGameService {
@@ -11,15 +11,10 @@ export class LinkeeGameService {
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders();
-    this.headers.append("Content-Type", "application/json");
+    this.headers.append('Content-Type', 'application/json');
   }
 
-  public storeGame({
-    id,
-    players,
-    currentCard,
-    cards,
-  }: LinkeeGameData): Observable<any> {
+  public storeGame({ id, players, currentCard, cards }: LinkeeGameData): Observable<any> {
     return this.http.post(
       `${this.server}/linkee-game`,
       {

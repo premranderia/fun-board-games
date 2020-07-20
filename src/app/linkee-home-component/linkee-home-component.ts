@@ -8,9 +8,8 @@ import { ENTER, COMMA } from '@angular/cdk/keycodes';
 @Component({
   selector: 'linkee-home-component',
   templateUrl: './linkee-home-component.html',
-  styleUrls: ['./linkee-home-component.css', '../app.css']
+  styleUrls: ['./linkee-home-component.css', '../app.css'],
 })
-
 export class LinkeeHomeComponent implements OnInit {
   public gameId: number;
   public spyMode: boolean;
@@ -29,7 +28,7 @@ export class LinkeeHomeComponent implements OnInit {
     E: 0,
   };
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.players = [];
@@ -52,7 +51,7 @@ export class LinkeeHomeComponent implements OnInit {
 
   public navigate(queryParams): void {
     this.router.navigate([`/${ROUTES.LINKEE_GAME}`], {
-      queryParams
+      queryParams,
     });
   }
 
