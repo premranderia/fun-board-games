@@ -61,3 +61,7 @@ input:checked + .slider:before {
 .toggle {
   float: right;
 }
+
+.mat-form-field-infix {
+  width: 400px;
+}

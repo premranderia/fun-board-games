@@ -26,7 +26,7 @@
                 (removed)="remove(player)"
               >
                 {{player.name}}
-                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                <mat-icon matChipRemove *ngIf="removable">x</mat-icon>
               </mat-chip>
               <input
                 placeholder="New Player"
@@ -42,12 +42,12 @@
           <input
             type="Button"
             class="btn new-game"
-            (click)="navigate({})"
+            (click)="enterGameWithId({})"
             value="New Game"
           />
         </div>
         <div class="child">
-          <span class="spy-info">Spy Masters Enter the Game ID </span>
+          <span class="spy-info">Enter the Game ID </span>
           <input
             type="text"
             inputmode="numeric"
@@ -57,6 +57,14 @@
             class="input-game"
             [(ngModel)]="gameId"
           />
+          <mat-slide-toggle
+            class="slide-toggle"
+            [checked]="spyMode"
+            color="warn"
+            (change)="spyMode = !spyMode"
+          >
+            <label class="label">Master View</label>
+          </mat-slide-toggle>
           <button
             mat-raised-button
             (click)="enterGameWithId()"

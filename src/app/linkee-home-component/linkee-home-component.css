@@ -364,3 +364,14 @@ and (orientation : portrait) {
     margin: 30px;
   }
 }
+.mat-chip, .mat-chip-list-wrapper, .map-chip-list , .mat-form-field{
+  color: #fff !important;
+}
+.mat-form-field {
+  input {
+    color: #fff !important;
+  }
+}
+.mat-form-field-underline {
+  background-color: green !important;
+}
