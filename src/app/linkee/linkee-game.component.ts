@@ -78,7 +78,7 @@ export class LinkeeGameComponent implements OnInit {
 
   public async initGame({ id, currentCard, gameView }) {
     const questionsRes = await this.linkeeGameService.getQuestions();
-    this.cards = questionsRes;
+    this.cards = _.shuffle(questionsRes);
     this.currentCard = currentCard || 0;
     this.gameId = id || _.random(1, 10000);
     this.gameView = gameView || GameView.PLAYER;
