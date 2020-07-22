@@ -42,6 +42,7 @@
 
   <div class="content-box">
     <div class="question-card" *ngIf="cards">
+      <span class="header-text">Find the Link !!!</span>
       <button mat-fab class="card-value" color="primary" id="{{ cards[currentCard].value }}">
         {{ cards[currentCard].value }}
       </button>
@@ -50,11 +51,12 @@
         <mat-chip-list>
           <mat-chip id="{{ i }}" (click)="showOption(i)" style="cursor: pointer;">
             <span *ngIf="i <= 3">{{ i + 1 }}.</span>
-            <span id="option-{{ i }}" *ngIf="i <= 3" [hidden]="optionHidden[i]">{{ question }}</span>
+            <span id="option-{{ i }}" *ngIf="i <= 3" [hidden]="optionHidden[i]" class="option">{{ question }}</span>
             <span *ngIf="i == 4">Clue: </span>
-            <span class="clue" id="option-{{ i }}" *ngIf="i == 4" [hidden]="optionHidden[i]">{{ question }}</span>
+            <span class="clue" id="option-{{ i }}" *ngIf="i == 4" [hidden]="optionHidden[i]" class="option">{{ question }}</span>
             <span *ngIf="i == 5">Answer:</span>
-            <span class="answer" id="option-{{ i }}" *ngIf="i == 5" [hidden]="optionHidden[i]">{{ question }}</span>
+            <span class="answer" id="option-{{ i }}" *ngIf="i == 5" [hidden]="optionHidden[i]" class="option">{{ question }}</span>
+            <span [hidden]="!optionHidden[i]" class="option">Click to Reveal</span>
           </mat-chip>
         </mat-chip-list>
       </div>

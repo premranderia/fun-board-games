@@ -39,7 +39,7 @@
   font-size: 30px;
   /* border: 1px dotted #ccc; */
   border-radius: 20px;
-  color: #040505;
+  color: gray;
   /* height: calc(100% / 5); */
   height: 130px;
   background: rgba(255, 255, 255, 0.9);
@@ -50,6 +50,9 @@
   padding: 20px;
   box-shadow: inset 0 0 0 10px lightgrey;
 }
+.option {
+  margin-left: 10px;
+}
 .question-card .mat-chip {
   padding: 15px 12px;
   width: 100%;
@@ -59,7 +62,7 @@
 .card-value {
   margin-bottom: 10px;
   font-size: large;
-  left: 40px;
+  left: -60px;
 }
 .next-question {
   float: right;
@@ -272,6 +275,9 @@ button {
 .footer.no-events {
   pointer-events: none;
 }
+.header-text {
+  float: left;
+}
 
 /* ipad in landscape */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
@@ -287,6 +293,12 @@ button {
     font-size: 12px;
     min-width: 45px;
   }
+  .question-card {
+    font-size: 24px;
+  }
+  .linkee-game {
+    overflow: visible;
+  }
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
@@ -295,12 +307,21 @@ button {
     font-size: 22px;
     word-break: break-all;
   }
-  .header {
-    font-size: 12px;
+  .question-card {
+    font-size: 18px;
   }
-
+  .header {
+    font-size: 24px;
+  }
+  .left {
+    left: -32px;
+  }
   .show-cards {
     display: none;
+  }
+  .linkee-game {
+    overflow: visible;
+    height: inherit;
   }
 }
 
@@ -323,6 +344,14 @@ button {
   .show-cards {
     display: none;
   }
+  .question-card {
+    font-size: 14px;
+    flex: 0 0 calc(100%);
+  }
+  .linkee-game {
+    overflow: visible;
+    height: inherit;
+  }
 }
 
 /* iphone 6,7,8 plus */
@@ -341,8 +370,50 @@ button {
     min-width: 45px;
   }
 
-  .show-cards {
+  .card-value {
+    left: -30px;
+  }
+  .question-card {
+    font-size: 14px;
+    flex: 0 0 calc(100%);
+  }
+  .linkee-game {
+    overflow: visible;
+    height: inherit;
+  }
+}
+
+/* Samsung S9+ */
+@media only screen and (min-device-width: 360px) and (max-device-width: 767px) and (orientation: landscape) {
+  .block {
+    flex: 0 1 100%;
+  }
+
+  .code-name {
+    overflow: scroll;
+  }
+
+  .header {
+    font-size: 16px;
+    padding: 0;
+  }
+  .cards-count {
+    display: block;
+  }
+  .reset {
     display: none;
+  }
+
+  .question-card {
+    font-size: 14px;
+    flex: 0 0 calc(100%);
+  }
+  .linkee-game {
+    overflow: visible;
+    height: inherit;
+  }
+  .card-value {
+    left: -30px;
   }
 }
 
@@ -359,16 +430,42 @@ button {
   .show-cards {
     display: none;
   }
-}
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  .question-card {
+    font-size: 14px;
+    flex: 0 0 calc(100%);
+  }
+  .mat-chip {
+    padding: 0;
+  }
+  .container-fluid {
+    padding: 0;
+  }
+  .linkee-game {
+    overflow: visible;
+    height: inherit;
+  }
   .block {
-    flex: 0 1 18%;
-    font-size: 16px;
+    flex: 0 1 100%;
+  }
+}
+/* ipad in Portrait */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  .question-card {
+    font-size: 15px;
   }
   .header {
-    font-size: 16px;
+    font-size: 18px;
     padding: 0;
+  }
+  .card-value {
+    left: -30px;
+  }
+  .block {
+    flex: 0 1 calc(20% - 0px);
+    font-size: 20px;
+  }
+  .linkee-game {
+    overflow: visible;
   }
 }
 
@@ -391,8 +488,12 @@ button {
   .reset {
     display: none;
   }
-  .show-cards {
-    display: none;
+  .question-card {
+    font-size: 14px;
+    flex: 0 0 calc(100%);
+  }
+  .linkee-game {
+    overflow: visible;
   }
 }
 
@@ -417,10 +518,48 @@ button {
     display: none;
   }
 
-  .show-cards {
-    display: none;
+  .question-card {
+    font-size: 14px;
+    flex: 0 0 calc(100%);
+  }
+  .linkee-game {
+    overflow: visible;
   }
 }
+
+/* Samsung S9+ */
+@media only screen and (min-device-width: 360px) and (max-device-width: 767px) and (orientation: portrait) {
+  .block {
+    flex: 0 1 100%;
+  }
+
+  .code-name {
+    overflow: scroll;
+  }
+
+  .header {
+    font-size: 16px;
+    padding: 0;
+  }
+  .cards-count {
+    display: block;
+  }
+  .reset {
+    display: none;
+  }
+
+  .question-card {
+    font-size: 14px;
+    flex: 0 0 calc(100%);
+  }
+  .linkee-game {
+    overflow: visible;
+  }
+  .card-value {
+    left: -30px;
+  }
+}
+
 /* iphone X */
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
   .block {
@@ -439,8 +578,17 @@ button {
   .reset {
     display: none;
   }
-
-  .show-cards {
-    display: none;
+  .question-card {
+    font-size: 14px;
+    flex: 0 0 calc(100%);
+  }
+  .card-value {
+    left: -28px;
+  }
+  .mat-chip {
+    /* padding: 0 !important; */
+  }
+  .linkee-game {
+    overflow: visible;
   }
 }

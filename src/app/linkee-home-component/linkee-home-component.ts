@@ -55,12 +55,11 @@ export class LinkeeHomeComponent implements OnInit {
     });
   }
 
-  public remove(name): void {
+  public remove({ name }): void {
     name = name.toUpperCase();
-    const index = this.players.indexOf(name);
-    if (index >= 0) {
-      this.players.splice(index, 1);
-    }
+    this.players = _.filter(this.players, (player: Players) => {
+      return player.name !== name;
+    });
   }
 
   add(event: MatChipInputEvent): void {
