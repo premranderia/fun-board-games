@@ -37,7 +37,7 @@ export class LinkeeGameComponent implements OnInit {
   private messages: Array<any>;
   private ioConnection: any;
   private defaultPlayer: Players = {
-    name: 'PREM',
+    name: 'Player 1',
     score: _.clone(this.score),
   };
 
@@ -97,7 +97,9 @@ export class LinkeeGameComponent implements OnInit {
     this.gameId = id || _.random(1, 10000);
     this.gameView = gameView || GameView.PLAYER;
     if (_.isEmpty(this.players)) {
-      this.players = [this.defaultPlayer];
+      const player2: Players = _.clone(this.defaultPlayer);
+      player2.name = 'Player 1';
+      this.players = [this.defaultPlayer, player2];
     }
     this.resetScore(this.players);
     this.resetOptionHidden();
@@ -118,9 +120,9 @@ export class LinkeeGameComponent implements OnInit {
       }
     });
 
-    this.socketService.onEvent(Event.CONNECT).subscribe((message: any) => {});
+    this.socketService.onEvent(Event.CONNECT).subscribe((message: any) => { });
 
-    this.socketService.onEvent(Event.DISCONNECT).subscribe(() => {});
+    this.socketService.onEvent(Event.DISCONNECT).subscribe(() => { });
     this.socketService.getActiveClients();
   }
 
