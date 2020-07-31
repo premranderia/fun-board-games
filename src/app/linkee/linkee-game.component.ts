@@ -98,7 +98,7 @@ export class LinkeeGameComponent implements OnInit {
     this.gameView = gameView || GameView.PLAYER;
     if (_.isEmpty(this.players)) {
       const player2: Players = _.clone(this.defaultPlayer);
-      player2.name = 'Player 1';
+      player2.name = 'Player 2';
       this.players = [this.defaultPlayer, player2];
     }
     this.resetScore(this.players);
@@ -120,9 +120,9 @@ export class LinkeeGameComponent implements OnInit {
       }
     });
 
-    this.socketService.onEvent(Event.CONNECT).subscribe((message: any) => { });
+    this.socketService.onEvent(Event.CONNECT).subscribe((message: any) => {});
 
-    this.socketService.onEvent(Event.DISCONNECT).subscribe(() => { });
+    this.socketService.onEvent(Event.DISCONNECT).subscribe(() => {});
     this.socketService.getActiveClients();
   }
 

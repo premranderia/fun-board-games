@@ -30,7 +30,7 @@ export class CodeNameComponent implements OnInit {
   MIN_COLOR = 8;
   NO_OF_ROWS = 5;
   NO_OF_COLUMNS = 5;
-  AUDIO_SOUNDS = true;
+  AUDIO_SOUNDS = false;
   COUNT_DOWN_LIMIT = 120;
 
   public rows: Array<any>;
