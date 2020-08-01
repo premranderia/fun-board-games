@@ -132,7 +132,7 @@ export class LinkeeGameComponent implements OnInit {
   }
 
   public navigateToHome() {
-    this.router.navigate([ROUTES.LINKEE_HOME]);
+    this.router.navigate([ROUTES.HOME]);
   }
 
   public sendMessage(message: LinkeeGameData): void {
