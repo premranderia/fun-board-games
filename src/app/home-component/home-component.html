@@ -1,8 +1,22 @@
 <div class="home-component">
   <div class="content">
-    <div class="row">
-      <img src="../../assets/code-name-logo.png" class="img-logo" />
-    </div>
+    <mat-card class="example-card">
+      <img class="img-logo" mat-card-image src="../../assets/code-name-logo.png" alt="Photo of a Shiba Inu" />
+      <mat-card-content>
+        <p class="rules">
+          <u>How To Play</u><br />
+          1) Game is played between 2 teams Red & Blue <br />
+          2) 6+ Players can play split in 2 teams<br />
+          3) Each team will elect 1 spy master and they both will have access to all cards and its color<br />
+          4) Spy masters can access a board by retrieving the game by ID below<br />
+          5) When a game is started, the board is blank with red/blue/yellow card values hidden<br />
+          6) Spymaster will give 1 word clue that can point to multiple cards<br />
+          eg: Red teams spy master can say "Food 2", that means there are 2 cards on board that has some relation with food. <br />
+          7) The game ends when all of one team's agents are identified (winning the game for that team),[3] or when one team has identified the
+          assassin (grey card)<br />
+        </p>
+      </mat-card-content>
+    </mat-card>
     <div class="row row-content">
       <div class="left">
         <iframe
