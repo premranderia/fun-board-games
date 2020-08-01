@@ -5,15 +5,27 @@ const app = express();
 
 const path = require('path');
 
-app.all('/', function(req, res) {
+app.all('/', function (req, res) {
   res.sendFile(path.join(__dirname + '/dist/index.html'));
 });
 
-app.get('/game', function(req, res) {
+app.get('/game', function (req, res) {
   res.sendFile(path.join(__dirname + '/dist/index.html'));
 });
 
-app.get('/code-name', function(req, res) {
+app.get('/code-name', function (req, res) {
+  res.sendFile(path.join(__dirname + '/dist/index.html'));
+});
+
+app.get('/linkee-home', function (req, res) {
+  res.sendFile(path.join(__dirname + '/dist/index.html'));
+});
+
+app.get('/linkee-game', function (req, res) {
+  res.sendFile(path.join(__dirname + '/dist/index.html'));
+});
+
+app.get('/code-name-home', function (req, res) {
   res.sendFile(path.join(__dirname + '/dist/index.html'));
 });
 
