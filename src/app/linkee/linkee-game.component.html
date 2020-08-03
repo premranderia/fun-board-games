@@ -33,7 +33,7 @@
         <mat-slide-toggle class="slide-toggle" [checked]="isSpyMasterViewOn()" (change)="toggleGameView()"> Spy</mat-slide-toggle>
       </div>
       <div class="col-1">
-        <button mat-raised-button (click)="initGame({})" color="warn" class="reset">
+        <button mat-raised-button (click)="initGame({})" color="warn" class="reset" [disabled]="isSpyMasterViewOn()">
           Reset
         </button>
       </div>
@@ -46,7 +46,7 @@
       <button mat-fab class="card-value" color="primary" id="{{ cards[currentCard].value }}">
         {{ cards[currentCard].value }}
       </button>
-      <span class="next-question" (click)="goToNextQuestion()">NEXT</span>
+      <span class="next-question" [hidden]="this.isSpyMasterViewOn()" (click)="goToNextQuestion()">NEXT</span>
       <div class="questions result" *ngFor="let question of cards[currentCard].questions; let i = index">
         <mat-chip-list>
           <mat-chip id="{{ i }}" (click)="showOption(i)" style="cursor: pointer;">
@@ -63,7 +63,7 @@
     </div>
   </div>
 
-  <div class="footer" [ngClass]="{ 'no-events': isGameOver || !isSpyMasterViewOn() }">
+  <div class="footer" [ngClass]="{ 'no-events': isGameOver || isSpyMasterViewOn() }">
     <div class="block players" *ngFor="let player of players">
       <div class="block-content" (click)="updateScore(player)">
         <div class="name">

@@ -59,52 +59,42 @@ export class LinkeeGameComponent implements OnInit {
       // .toPromise();
       .subscribe(async (params: QueryParams) => {
         let id = params.id;
-
+        let gameData: LinkeeGameData = {};
         if (params.players) {
           this.players = JSON.parse(params.players);
         }
         if (id) {
-          const gameData: LinkeeGameData = await this.fetchGameData({ id });
-          if (gameData.players) {
-            this.players = gameData.players;
-          }
-          if (params.spy && !!params.spy === true) {
-            this.gameView = GameView.SPYMASTER;
-          }
-          if (gameData.currentCard) {
-            this.currentCard = gameData.currentCard;
-          }
-          if (gameData.cards) {
-            this.cards = gameData.cards;
-          }
-          this.gameId = id;
+          gameData = await this.fetchGameData({ id });
         }
-        await this.initGame({
-          id: this.gameId,
-          currentCard: this.currentCard,
-          gameView: this.gameView,
-          cards: this.cards,
-        });
+        if (params.spy && !!params.spy === true) {
+          gameData.gameView = GameView.SPYMASTER;
+        }
+        console.log(id, gameData);
+        await this.initGame(gameData);
       });
   }
 
-  public async initGame({ id, currentCard, gameView, cards }: LinkeeGameData) {
+  public async initGame({ id, currentCard, gameView, cards, playerWhoWon, isGameOver, players }: LinkeeGameData) {
     if (_.isUndefined(cards)) {
       const questionsRes = await this.linkeeGameService.getQuestions();
       this.cards = _.shuffle(questionsRes);
+    } else {
+      this.cards = cards;
     }
     this.currentCard = currentCard || 0;
     this.gameId = id || _.random(1, 10000);
     this.gameView = gameView || GameView.PLAYER;
-    if (_.isEmpty(this.players)) {
+    if (_.isEmpty(players)) {
       const player2: Players = _.clone(this.defaultPlayer);
       player2.name = 'Player 2';
       this.players = [this.defaultPlayer, player2];
+    } else {
+      this.players = players;
     }
     this.resetScore(this.players);
     this.resetOptionHidden();
-    this.playerWhoWon = undefined;
-    this.isGameOver = false;
+    this.playerWhoWon = playerWhoWon || undefined;
+    this.isGameOver = isGameOver || false;
     this.saveBoard();
   }
 
@@ -118,11 +108,17 @@ export class LinkeeGameComponent implements OnInit {
       if (message.currentCard) {
         this.currentCard = message.currentCard;
       }
+      if (message.playerWhoWon) {
+        this.playerWhoWon = message.playerWhoWon;
+      }
+      if (message.isGameOver) {
+        this.isGameOver = message.isGameOver;
+      }
     });
 
-    this.socketService.onEvent(Event.CONNECT).subscribe((message: any) => {});
+    this.socketService.onEvent(Event.CONNECT).subscribe((message: any) => { });
 
-    this.socketService.onEvent(Event.DISCONNECT).subscribe(() => {});
+    this.socketService.onEvent(Event.DISCONNECT).subscribe(() => { });
     this.socketService.getActiveClients();
   }
 
@@ -139,6 +135,7 @@ export class LinkeeGameComponent implements OnInit {
     if (!message) {
       return;
     }
+    console.log(message);
     this.socketService.send({
       from: message.id,
       message,
@@ -146,6 +143,10 @@ export class LinkeeGameComponent implements OnInit {
   }
 
   public goToNextQuestion() {
+    // Only normal screen can go next;
+    if (this.isSpyMasterViewOn()) {
+      return false;
+    }
     this.currentCard++;
     this.resetOptionHidden();
     this.saveBoard();
@@ -212,6 +213,10 @@ export class LinkeeGameComponent implements OnInit {
         isWon = false;
         break;
       }
+      if (key === 'E' && player.score[key] < 2) {
+        isWon = false;
+        break;
+      }
     }
     this.playerWhoWon = player;
     return isWon;
@@ -232,21 +237,19 @@ export class LinkeeGameComponent implements OnInit {
   }
 
   private saveBoard(): void {
-    this.linkeeGameService
-      .storeGame({
-        id: this.gameId,
-        players: this.players,
-        currentCard: this.currentCard,
-        cards: this.cards,
-      })
-      .subscribe();
-
-    this.sendMessage({
+    const linkeGameData = {
       id: this.gameId,
       players: this.players,
       currentCard: this.currentCard,
       cards: this.cards,
-    });
+      isGameOver: this.isGameOver,
+      playerWhoWon: this.playerWhoWon,
+    };
+    this.linkeeGameService
+      .storeGame(linkeGameData)
+      .subscribe();
+
+    this.sendMessage(linkeGameData);
   }
 }
 
@@ -256,6 +259,8 @@ export interface LinkeeGameData {
   currentCard?: number;
   cards?: Cards[];
   gameView?: GameView;
+  isGameOver?: boolean;
+  playerWhoWon?: Players;
 }
 
 export interface Cards {

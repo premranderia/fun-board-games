@@ -14,16 +14,12 @@ export class LinkeeGameService {
     this.headers.append('Content-Type', 'application/json');
   }
 
-  public storeGame({ id, players, currentCard, cards }: LinkeeGameData): Observable<any> {
+  public storeGame(linkeGameData: LinkeeGameData): Observable<any> {
     return this.http.post(
       `${this.server}/linkee-game`,
       {
-        id,
-        data: {
-          players,
-          currentCard,
-          cards,
-        },
+        id: linkeGameData.id,
+        data: linkeGameData,
       },
       {
         headers: this.headers,
@@ -37,12 +33,12 @@ export class LinkeeGameService {
         .get(`${this.server}/linkee-game/${id}`)
         .toPromise()
         .then(
-          (data: LinkeeGameData) => {
-            resolve(data);
-          },
-          () => {
-            reject();
-          }
+        (data: LinkeeGameData) => {
+          resolve(data);
+        },
+        () => {
+          reject();
+        }
         );
     });
   }
@@ -53,12 +49,12 @@ export class LinkeeGameService {
         .get(`${this.server}/linkeegame/questions`)
         .toPromise()
         .then(
-          (data: Cards[]) => {
-            resolve(data);
-          },
-          () => {
-            reject();
-          }
+        (data: Cards[]) => {
+          resolve(data);
+        },
+        () => {
+          reject();
+        }
         );
     });
   }
